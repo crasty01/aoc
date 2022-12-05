@@ -24,23 +24,21 @@ for (const year of years) {
   const days = config.day ? [config.day] : await getAllDaysInAYear(year);
 
   for (const day of days) {
-
     const { parseInput, solution1, solution2 } = await getSolutions(year, day);
     const rawInut = await getInut(year, day);
 
-    const input = parseInput(rawInut);
     const solution1PerformanceStart = performance.now();
-    const solution1Result = solution1(input);
+    const solution1Result = await solution1(parseInput(rawInut));
     const solution1PerformanceEnd = performance.now();
     const solution1Performance = Math.round((solution1PerformanceEnd - solution1PerformanceStart) * 100) / 100;
     const solution2PerformanceStart = performance.now();
-    const solution2Result = solution2(input);
+    const solution2Result = await solution2(parseInput(rawInut));
     const solution2PerformanceEnd = performance.now();
     const solution2Performance = Math.round((solution2PerformanceEnd - solution2PerformanceStart) * 100) / 100;
 
     renderSolutionTable([
-      [`${year}-${day}-01`, solution1Result, `${solution1Performance} ms`],
-      [`${year}-${day}-02`, solution2Result, `${solution2Performance} ms`],
+      [`${year}-${day}-01`, solution1Result, `${solution1Performance} s`],
+      [`${year}-${day}-02`, solution2Result, `${solution2Performance} s`],
     ], {
       year,
       day
