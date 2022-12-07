@@ -21,13 +21,13 @@ export const getAllDaysInAYear = async (year: string) => {
   const days: Array<string> = [];
   const dir = DAYS_PATH(year);
   for await (const dirEntry of Deno.readDir(dir)) {
-    const splitted = dirEntry.name.split('.');
-    const name = splitted.slice(0, -1).join('.');
-    const extention = splitted.at(-1);
+    // const splitted = dirEntry.name.split('.');
+    // const name = splitted.slice(0, -1).join('.');
+    // const extention = splitted.at(-1);
 
-    if (extention !== 'ts') continue;
+    // if (extention !== 'ts') continue;
 
-    days.push(name);
+    days.push(dirEntry.name);
   }
   return days;
 }

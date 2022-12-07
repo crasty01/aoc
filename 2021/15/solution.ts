@@ -1,4 +1,4 @@
-import Grid, { Cell } from '/src/lib/pathfinding.ts';
+import Grid, { Cell } from './Pathfinding.ts';
 import { assert } from "std/testing/asserts.ts";
 
 type Input = Array<Array<number>>;

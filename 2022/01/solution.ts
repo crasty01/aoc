@@ -1,5 +1,3 @@
-import { sum } from '/src/lib/math.ts';
-
 type Input = Array<number | null>; 
 
 export const parseInput = (rawInut: string): Input => {
@@ -36,5 +34,5 @@ export const solution2 = (input: Input): number | string =>  {
       sum += input[i]!;
     }
   }
-  return sum(max);
+  return max.reduce((acc, e) => acc + e, 0);
 }

@@ -1,4 +1,4 @@
-import Grid from '/src/lib/grid.ts';
+import Grid from './Grid.ts';
 
 type Input = {
   dots: Array<Position>;

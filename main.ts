@@ -7,12 +7,12 @@ import {
 import { join as joinPath } from 'std/path/mod.ts';
 
 const getInut = async (year: string, day: string) => {
-  const path = joinPath(Deno.cwd(), year, `${day}.txt`);
+  const path = joinPath(Deno.cwd(), year, day, `input.txt`);
   return await Deno.readTextFile(path);
 }
 
 const getSolutions = async (year: string, day: string) => {
-  const path = `file:\\\\${joinPath(Deno.cwd(), year, `${day}.ts`)}`;
+  const path = `file:\\\\${joinPath(Deno.cwd(), year, day, `solution.ts`)}`;
   return await import(path);
 }
 
@@ -37,8 +37,8 @@ for (const year of years) {
     const solution2Performance = Math.round((solution2PerformanceEnd - solution2PerformanceStart) * 100) / 100;
 
     renderSolutionTable([
-      [`${year}-${day}-01`, solution1Result, `${solution1Performance} s`],
-      [`${year}-${day}-02`, solution2Result, `${solution2Performance} s`],
+      [`${year}-${day}-01`, solution1Result, `${solution1Performance} ms`],
+      [`${year}-${day}-02`, solution2Result, `${solution2Performance} ms`],
     ], {
       year,
       day

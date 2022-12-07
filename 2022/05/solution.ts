@@ -1,8 +1,14 @@
-import { rotateArray } from '/src/lib/array.ts';
-
 type Input = { moves: Array<Move>; stack: Stack; };
 type Move = { n: number; from: number; to: number; }
 type Stack = Array<Array<string | undefined>>;
+
+const rotateArray = <T extends string | number | undefined | boolean>(array: Array<Array<T>>, n = 1) => {
+  let matrix = array;
+  for (let i = 0; i < n; i++) {
+    matrix = matrix[0].map((_, index) => matrix.map(row => row[index]).reverse())
+  }
+  return matrix;
+}
 
 export const parseInput = (rawInut: string): Input => {
   const [rawStack, rawMoves] = rawInut.split('\r\n\r\n');
