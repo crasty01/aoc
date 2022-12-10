@@ -1,5 +1,5 @@
 
-import { Select, SelectValueOptions } from '/src/services/cli.ts';
+import { GenericListOption, Select } from '/src/services/cli.ts';
 import { Table } from 'cliffy/table/mod.ts';
 import { colors } from 'cliffy/ansi/colors.ts';
 import { join as joinPath,  } from 'std/path/mod.ts';
@@ -14,22 +14,16 @@ export const getAllYears = async () => {
     if (!/^\d{4}$/.exec(dirEntry.name)) continue;
     years.push(dirEntry.name);
   }
-  return years;
+  return years.sort((a, b) => a.localeCompare(b));
 }
 
 export const getAllDaysInAYear = async (year: string) => {
   const days: Array<string> = [];
   const dir = DAYS_PATH(year);
   for await (const dirEntry of Deno.readDir(dir)) {
-    // const splitted = dirEntry.name.split('.');
-    // const name = splitted.slice(0, -1).join('.');
-    // const extention = splitted.at(-1);
-
-    // if (extention !== 'ts') continue;
-
     days.push(dirEntry.name);
   }
-  return days;
+  return days.sort((a, b) => a.localeCompare(b));;
 }
 
 export const whichDayToRun = async (message = {
@@ -39,18 +33,34 @@ export const whichDayToRun = async (message = {
   year?: string;
   day?: string;
 }> => {
+  const years = await getAllYears();
   const year = await Select.prompt({
     message: message.year,
     info: true,
-    options: ['all', ...await getAllYears()],
+    options: years.length > 1
+      ? [
+        { name: 'last', value: years.at(-1)! },
+        'all',
+        Select.separator("--------"),
+        ...years,
+      ]
+      : years,
   });
 
   if (year === 'all') return {};
 
+  const days = await getAllDaysInAYear(year);
   const day = await Select.prompt({
     message: message.day,
     info: true,
-    options: ['all', ...await getAllDaysInAYear(year)],
+    options: days.length > 1
+      ? [
+        { name: 'last', value: days.at(-1)! },
+        'all',
+        Select.separator("--------"),
+        ...days,
+      ]
+      : days,
   });
 
   if (day === 'all') return { year };
