@@ -7,13 +7,15 @@ import {
 import { join as joinPath } from 'std/path/mod.ts';
 import { parse } from "std/flags/mod.ts";
 
+let iteration = 0;
+
 const getInut = async (year: string, day: string) => {
   const path = joinPath(Deno.cwd(), year, day, `input.txt`);
   return await Deno.readTextFile(path);
 }
 
-const getSolutions = async (year: string, day: string) => {
-  const path = `file:\\\\${joinPath(Deno.cwd(), year, day, `solution.ts`)}`;
+const getSolutions = async (year: string, day: string, iteration?: number) => {
+  const path = `file:\\\\${joinPath(Deno.cwd(), year, day, `solution.ts#${iteration}`)}`;
   return await import(path);
 }
 
@@ -23,14 +25,14 @@ const watcher = parse(Deno.args).w ? Deno.watchFs(".") : [];
 const config = await whichDayToRun();
 const years = config.year ? [config.year] : await getAllYears();
 
-const run = async (clear = true) => {
-  if (clear) console.clear();
-
+const run = async (iteration = 0) => {
+  console.clear();
+  
   for (const year of years) {
     const days = config.day ? [config.day] : await getAllDaysInAYear(year);
 
     for (const day of days) {
-      const { parseInput, solution1, solution2 } = await getSolutions(year, day);
+      const { parseInput, solution1, solution2 } = await getSolutions(year, day, iteration);
       const rawInut = await getInut(year, day);
 
       const solution1PerformanceStart = performance.now();
@@ -56,7 +58,7 @@ const run = async (clear = true) => {
 }
 await run();
 for await (const _ of watcher) {
-  await run();
+  await run(++iteration);
 }
 
 console.log('\n');

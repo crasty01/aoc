@@ -1,5 +1,13 @@
 {
   "deno.enable": true,
   "deno.unstable": true,
-  "deno.importMap": "./import_map.json"
+  "deno.importMap": "./import_map.json",
+  "deno.inlayHints.variableTypes.enabled": false,
+  "deno.inlayHints.functionLikeReturnTypes.enabled": false,
+  "deno.inlayHints.parameterTypes.enabled": false,
+  "deno.inlayHints.variableTypes.suppressWhenTypeMatchesName": true,
+  "deno.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
+  "deno.inlayHints.enumMemberValues.enabled": false,
+  "deno.inlayHints.parameterNames.enabled": "none",
+  "deno.inlayHints.propertyDeclarationTypes.enabled": false,
 }
