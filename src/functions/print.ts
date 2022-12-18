@@ -26,16 +26,19 @@ export const getAllDaysInAYear = async (year: string) => {
   return days.sort((a, b) => a.localeCompare(b));;
 }
 
-export const whichDayToRun = async (message = {
-  year: 'Select year you want to run',
-  day: 'Select day you want to run',
-}): Promise<{
+type Options = {
+    year?: string;
+    day?: string;
+  }
+
+export const whichDayToRun = async (defaults: Options = { year: undefined, day: undefined }): Promise<{
   year?: string;
   day?: string;
 }> => {
   const years = await getAllYears();
-  const year = await Select.prompt({
-    message: message.year,
+  const useDefaultYear = years.includes(defaults.year!);
+  const selectedYear = useDefaultYear ? defaults.year as string : await Select.prompt({
+    message: 'Which year do you want to run?',
     info: true,
     options: years.length > 1
       ? [
@@ -47,11 +50,12 @@ export const whichDayToRun = async (message = {
       : years,
   });
 
-  if (year === 'all') return {};
+  if (selectedYear === 'all') return {};
 
-  const days = await getAllDaysInAYear(year);
-  const day = await Select.prompt({
-    message: message.day,
+  const days = await getAllDaysInAYear(selectedYear);
+  const useDefaultDay = years.includes(defaults.year!) && days.includes(defaults.day!);
+  const selectedDay = useDefaultDay ? defaults.day as string : await Select.prompt({
+    message: 'Which day do you want to run?',
     info: true,
     options: days.length > 1
       ? [
@@ -63,9 +67,9 @@ export const whichDayToRun = async (message = {
       : days,
   });
 
-  if (day === 'all') return { year };
+  if (selectedDay === 'all') return { year: selectedYear };
 
-  return { year, day };
+  return { year: selectedYear, day: selectedDay };
 }
 
 export const renderSolutionTable = (

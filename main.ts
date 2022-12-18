@@ -22,7 +22,10 @@ const getSolutions = async (year: string, day: string, iteration?: number) => {
 
 console.clear();
 const watcher = parse(Deno.args).w ? Deno.watchFs(".") : [];
-const config = await whichDayToRun();
+const config = await whichDayToRun({
+  year: String(parse(Deno.args).year),
+  day: String(parse(Deno.args).day),
+});
 const years = config.year ? [config.year] : await getAllYears();
 
 const run = async (iteration = 0) => {
