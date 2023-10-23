@@ -21,10 +21,11 @@ const getSolutions = async (year: string, day: string, iteration?: number) => {
 
 
 console.clear();
+console.log(parse(Deno.args));
 const watcher = parse(Deno.args).w ? Deno.watchFs(".") : [];
 const config = await whichDayToRun({
-  year: String(parse(Deno.args).year),
-  day: String(parse(Deno.args).day),
+  year: String(parse(Deno.args).year).padStart(4, '0'),
+  day: String(parse(Deno.args).day).padStart(2, '0'),
 });
 const years = config.year ? [config.year] : await getAllYears();
 
