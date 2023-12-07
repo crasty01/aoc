@@ -53,7 +53,7 @@ export const whichDayToRun = async (defaults: Options = { year: undefined, day: 
   if (selectedYear === 'all') return {};
 
   const days = await getAllDaysInAYear(selectedYear);
-  console.log(days);
+  // console.log(days);
   const useDefaultDay = years.includes(defaults.year!) && days.includes(defaults.day!);
   const selectedDay = useDefaultDay ? defaults.day as string : await Select.prompt({
     message: 'Which day do you want to run?',

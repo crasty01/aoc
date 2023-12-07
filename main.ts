@@ -20,8 +20,8 @@ const getSolutions = async (year: string, day: string, iteration?: number) => {
 }
 
 
-console.clear();
-console.log(parse(Deno.args));
+// console.clear();
+// console.log(parse(Deno.args));
 const watcher = parse(Deno.args).w ? Deno.watchFs(".") : [];
 const config = await whichDayToRun({
   year: String(parse(Deno.args).year).padStart(4, '0'),
@@ -30,13 +30,14 @@ const config = await whichDayToRun({
 const years = config.year ? [config.year] : await getAllYears();
 
 const run = async (iteration = 0) => {
-  console.clear();
+  // console.clear();
   
   for (const year of years) {
     const days = config.day ? [config.day] : await getAllDaysInAYear(year);
 
     for (const day of days) {
       const { parseInput, solution1, solution2 } = await getSolutions(year, day, iteration);
+			// console.log('running', year, day)
       const rawInut = await getInut(year, day);
 
       const solution1PerformanceStart = performance.now();
