@@ -3,6 +3,7 @@ import {
   renderSolutionTable,
   getAllYears,
   getAllDaysInAYear,
+consoleClear,
 } from '/src/functions/print.ts';
 import { join as joinPath } from 'std/path/mod.ts';
 import { parse } from "std/flags/mod.ts";
@@ -20,24 +21,25 @@ const getSolutions = async (year: string, day: string, iteration?: number) => {
 }
 
 
-// console.clear();
-// console.log(parse(Deno.args));
-const watcher = parse(Deno.args).w ? Deno.watchFs(".") : [];
+const parsedArgs = parse(Deno.args);
+const watcher = parsedArgs.w ? Deno.watchFs(".") : [];
 const config = await whichDayToRun({
-  year: String(parse(Deno.args).year).padStart(4, '0'),
-  day: String(parse(Deno.args).day).padStart(2, '0'),
+  year: String(parsedArgs.year).padStart(4, '0'),
+  day: String(parsedArgs.day).padStart(2, '0'),
 });
 const years = config.year ? [config.year] : await getAllYears();
 
 const run = async (iteration = 0) => {
-  // console.clear();
-  
+
+	if (parsedArgs.clear) {
+		consoleClear(true);
+	}
+
   for (const year of years) {
     const days = config.day ? [config.day] : await getAllDaysInAYear(year);
 
     for (const day of days) {
       const { parseInput, solution1, solution2 } = await getSolutions(year, day, iteration);
-			// console.log('running', year, day)
       const rawInut = await getInut(year, day);
 
       const solution1PerformanceStart = performance.now();
@@ -49,13 +51,12 @@ const run = async (iteration = 0) => {
       const solution2PerformanceEnd = performance.now();
       const solution2Performance = Math.round((solution2PerformanceEnd - solution2PerformanceStart) * 100) / 100;
 
-      renderSolutionTable([
-        [`${year}-${day}-01`, solution1Result, `${solution1Performance} ms`],
-        [`${year}-${day}-02`, solution2Result, `${solution2Performance} ms`],
-      ], {
-        year,
-        day
-      })
+			if (!parsedArgs['no-results']) {
+				renderSolutionTable([
+					[`${year}-${day}-01`, solution1Result, `${solution1Performance} ms`],
+					[`${year}-${day}-02`, solution2Result, `${solution2Performance} ms`],
+				], { year, day })
+			}
 
     }
   }

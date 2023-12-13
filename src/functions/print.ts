@@ -1,11 +1,17 @@
 
-import { GenericListOption, Select } from '/src/services/cli.ts';
+import { Select } from '/src/services/cli.ts';
 import { Table } from 'cliffy/table/mod.ts';
 import { colors } from 'cliffy/ansi/colors.ts';
 import { join as joinPath,  } from 'std/path/mod.ts';
 
 const CWD = Deno.cwd();
 const DAYS_PATH = (year: string) => joinPath(CWD, year);
+
+export const consoleClear = (fullClear = false) => {
+  Deno.stdout.write(
+    new TextEncoder().encode(fullClear ? "\x1b[2J" : "\x1b[0f"),
+  );
+}
 
 export const getAllYears = async () => {
   const years: Array<string> = [];
