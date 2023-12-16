@@ -1,3 +1,5 @@
+import { clearScreen } from "https://deno.land/x/cliffy@v0.25.4/ansi/ansi_escapes.ts";
+
 type Input = Array<string>;
 
 export const parseInput = (rawInut: string): Input => {
@@ -174,25 +176,40 @@ const handleMovement = (tile: string, current: Laser) => {
 	return queue;
 }
 
-const solveForDirection = (input: Input, directions: Array<Laser>) => {
+// const dirToSymbol = {
+// 	[FROM_LEFT]: '>',
+// 	[FROM_TOP]: 'v',
+// 	[FROM_RIGHT]: '<',
+// 	[FROM_BOTTOM]: '^',
+// }
+
+const solveForDirection = (input: Input, directions: Array<Laser>, vis = false) => {
 	const usedTiles = new Set<Key>();
 	const usedTilesWithDir = new Set<KeyWithDir>();
 	const queue: Array<Laser> = [...directions];
 
+	// const visArray = Array.from({ length: input.length }, (_, i) => Array.from({ length: input[i].length }, () => '.'))
+
 	while (queue.length > 0) {
 		const current = queue.shift();
 		if (!current) throw new Error("NO QUEUE ELEMENT FOUND!");
-
 		if (current.x >= input[0].length || current.x < 0 || current.y >= input.length || current.y < 0) continue;
 
+		const tile = input[current.y][current.x];
+		// if (viz && tile === '.') {
+		// 	visArray[current.y][current.x] = dirToSymbol[current.dir];
+		// 	console.log(clearScreen);
+		// 	console.log(visArray.map(e => e.join(',')).join('\n'))
+		// }
+		
 		const key = `${current.x}-${current.y}}` as Key;
 		const keyWithDir = `${current.x}-${current.y}-${current.dir}` as KeyWithDir;
 		if (usedTilesWithDir.has(keyWithDir)) continue;
-
+		
 		usedTilesWithDir.add(keyWithDir);
 		usedTiles.add(key);
 		
-		const newPositions = handleMovement(input[current.y][current.x], current);
+		const newPositions = handleMovement(tile, current);
 		queue.push(...newPositions);
 	}
 
