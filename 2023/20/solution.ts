@@ -58,7 +58,7 @@ export const solution1 = (input: Input): number =>  {
 }
 
 export const solution2 = (input: Input): number =>  {
-	input.addModule(new CounterModule('rx', input));
+	input.addModule(new CounterModule('rx'));
 
 	const modules = [...input.getModules().values()];
 	const c = modules.find(module => module.recievers.includes('rx'));

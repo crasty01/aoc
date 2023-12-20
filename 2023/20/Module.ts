@@ -93,7 +93,7 @@ export class BroadcasterModule implements Module {
 		this.#moduleSet = moduleSet;
 	}
 
-	trigger(signal: SignalType, transmitter: string) {
+	trigger(signal: SignalType) {
 		for (let i = 0; i < this.#receivers.length; i++) {
 			this.#moduleSet.addToQueue({
 				receiver: this.#receivers[i],
@@ -131,9 +131,9 @@ export class FlipFlopModule implements Module {
 		this.#moduleSet = moduleSet;
 	}
 
-	trigger(signal: SignalType, transmitter: string) {
-		if (signal) return; // if module receives a high pulse, it is ignored and nothing happens
-		this.#state = !this.#state; // module receives a low pulse, it flips between on and off
+	trigger(signal: SignalType) {
+		if (signal) return;
+		this.#state = !this.#state;
 		
 		for (let i = 0; i < this.#receivers.length; i++) {
 			this.#moduleSet.addToQueue({
@@ -230,16 +230,14 @@ export class CounterModule implements Module {
 	#type: ModulType;
 	#name: string;
 	#state: [number, number];
-	#moduleSet: ModuleSet;
 
-	constructor(name: string, moduleSet: ModuleSet) {
+	constructor(name: string) {
 		this.#type = '+';
 		this.#name = name;
 		this.#state = [0, 0];
-		this.#moduleSet = moduleSet;
 	}
 
-	trigger(signal: SignalType, transmitter: string) {
+	trigger(signal: SignalType) {
 		this.#state[+signal] += 1;
 	}
 
