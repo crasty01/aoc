@@ -1,3 +1,5 @@
+import { lcm } from "/src/functions/math.ts";
+
 type Input = {
 	instructions: string;
 	nodes: Map<string, [string, string]>;
@@ -34,10 +36,6 @@ export const solution1 = (input: Input): number =>  {
 
   return steps;
 }
-
-const _lcm = (a: number, b: number) => (a * b) / gcd(a, b)
-const gcd = (a: number, b: number): number => (b == 0) ? a : gcd(b, a % b)
-const lcm = (list: Array<number>) => list.reduce((acc, n) => _lcm(acc, n));
 
 export const solution2 = (input: Input): number =>  {
 	const instructions = [...input.instructions].map(e => Number(e === 'R'));
