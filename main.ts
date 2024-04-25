@@ -54,7 +54,6 @@ const run = async (iteration = 0) => {
 			const functions = parsedArgs['include-tests'] ? [...solutions, ...(tests ?? [])] : solutions;
 			const results: Array<Result> = await Promise.all(functions.map((solution, solutionIndex) => new Promise<Result>((resolve, reject) => {
 				const solutionPerformanceStart = performance.now();
-				console.log(solution.name)
 				Promise.resolve(solution(parseInput(rawInut))).then((result) => {
 					const solutionPerformanceEnd = performance.now();
 					const solutionPerformance = Math.round((solutionPerformanceEnd - solutionPerformanceStart) * 100) / 100;
