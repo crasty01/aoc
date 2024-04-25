@@ -7,6 +7,7 @@ export const getCellHeight = (cell: string): number => {
   return cell.charCodeAt(0) - 96;
 }
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   let start: Pos | undefined;
   let end: Pos | undefined;
@@ -50,11 +51,11 @@ const getShortedstPath = (start: Pos, end: Pos, grid: Array<Array<number>>): num
   throw new Error("No solution found");
 }
 
-export const solution1 = ([start, end, grid]: Input): number | string =>  {
+solutions[0] = ([start, end, grid]: Input): number | string =>  {
   return getShortedstPath(start, end, grid);
 }
 
-export const solution2 = ([_, end, grid]: Input): number | string =>  {
+solutions[1] = ([_, end, grid]: Input): number | string =>  {
   let shortestPath = Number.MAX_SAFE_INTEGER;
   for (let y = 0; y < grid.length; y++) {
     for (let x = 0; x < grid[0].length; x++) {

@@ -1,5 +1,6 @@
 type Input = Array<number>;
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
 	const regexNumbers = new RegExp(/\d+/g);
 	return rawInut.split('\r\n').map(line => {
@@ -17,7 +18,7 @@ export const parseInput = (rawInut: string): Input => {
 	});
 }
 
-export const solution1 = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string =>  {
 	let points = 0;
 	
 	for (const matched of input) {
@@ -27,7 +28,7 @@ export const solution1 = (input: Input): number | string =>  {
 	return points;
 }
 
-export const solution2 = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string =>  {
 	const counted = input.map(() => 1);
 	let points = input.length;
 	

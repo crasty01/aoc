@@ -2,6 +2,7 @@ type Extreme = { min: number, max: number };
 type Extremes = { x: Extreme, y: Extreme, z: Extreme };
 type Input = Set<string>; // x,y,z
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return new Set(rawInut.split('\r\n'));
 }
@@ -98,10 +99,10 @@ const getSurfaceAreaWithoutAirPockets = (cubes: Input): number =>  {
   return getSurfaceArea(air) - surfaceArea;
 }
 
-export const solution1 = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string =>  {
   return getSurfaceArea(input);
 }
 
-export const solution2 = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string =>  {
   return getSurfaceAreaWithoutAirPockets(input);
 }

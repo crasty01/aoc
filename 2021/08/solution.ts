@@ -47,6 +47,7 @@ const correct = [...toNumber.keys()]
   .map((e) => [...e].sort((a, b) => a.localeCompare(b)).join(""))
   .sort((a, b) => a.length - b.length || a.localeCompare(b));
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return rawInut.split("\r\n").map((e) => {
     const [left, right] = e.split(" | ").map((f) => f.split(" "));
@@ -54,7 +55,7 @@ export const parseInput = (rawInut: string): Input => {
   });
 };
 
-export const solution1 = (input: Input): number | string => {
+solutions[0] = (input: Input): number | string => {
   // return 0; // TODO: does not work!
   return input.reduce(
     (acc, e) =>
@@ -65,7 +66,7 @@ export const solution1 = (input: Input): number | string => {
   );
 };
 
-export const solution2 = (input: Input): number | string => {
+solutions[1] = (input: Input): number | string => {
   // return 0; 
   const list = ["a", "b", "c", "d", "e", "f", "g"];
   let sum = 0;

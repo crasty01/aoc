@@ -28,11 +28,12 @@ const find = (board: Board, n: number) => {
   
 }
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return rawInut.replace(/\r\n/g, '\n').split('\n\n');
 }
 
-export const solution1 = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string =>  {
   const [numbers_raw, ...games_raw] = input
   const numbers = numbers_raw.split(',').map(Number);
   const games = games_raw.map(e => ({
@@ -60,7 +61,7 @@ export const solution1 = (input: Input): number | string =>  {
   return numbers[winner_game.nSteps] * sumLeft(winner_game.board);
 }
 
-export const solution2 = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string =>  {
   const [numbers_raw, ...games_raw] = input
   const numbers = numbers_raw.split(',').map(Number);
   const games = games_raw.map(e => ({

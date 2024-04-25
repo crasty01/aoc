@@ -10,6 +10,7 @@ const overlap = (a: Pair, b: Pair): boolean => {
   return b[0] >= a[0] && b[0] <= a[1] || b[1] >= a[0] && b[1] <= a[1];
 }
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return rawInut.split("\r\n").map((line) => {
     return line.split(",").map((pair) => {
@@ -18,7 +19,7 @@ export const parseInput = (rawInut: string): Input => {
   });
 };
 
-export const solution1 = (input: Input): number | string => {
+solutions[0] = (input: Input): number | string => {
   let s = 0;
   for (const line of input) {
     if (contains(line[0], line[1]) || contains(line[1], line[0])) s += 1;
@@ -26,7 +27,7 @@ export const solution1 = (input: Input): number | string => {
   return s;
 };
 
-export const solution2 = (input: Input): number | string => {
+solutions[1] = (input: Input): number | string => {
   let s = 0;
   for (const line of input) {
     if (overlap(line[0], line[1]) || overlap(line[1], line[0])) s += 1;

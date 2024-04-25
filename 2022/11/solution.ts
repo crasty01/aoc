@@ -42,6 +42,7 @@ const getTest = (line: string, lineTrue: string, lineFalse: string): [bigint, Te
   return [n, (value) => value % n === 0n ? trueIndex : falseIndex];
 }
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return rawInut.split('\r\n\r\n').map((monkey, index) => {
     const [ _, items, operation, _test, testTrue, testFalse ] = monkey.split('\n').map(e => e.trim());
@@ -75,12 +76,12 @@ const solution = (monkeys: Input, ROUNDS: number, lowerNumber: (value: bigint) =
   return monkey1.inspected * monkey2.inspected;
 }
 
-export const solution1 = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string =>  {
   const lowerNumber = (value: bigint): bigint => value / 3n;
   return solution(input, 20, lowerNumber);
 }
 
-export const solution2 = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string =>  {
   const lazyCommonDivisor = input.reduce((acc, monkey) => acc * monkey.divisor, 1n);
   const lowerNumber = (value: bigint): bigint => value % lazyCommonDivisor;
   return solution(input, 10000, lowerNumber);

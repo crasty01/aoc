@@ -45,6 +45,7 @@ const parseLine = (line: string): Line => {
   return createFile(parseInt(parts[0], 10), parts[1]);
 }
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return rawInut.split('\r\n').map(parseLine);
 }
@@ -73,7 +74,7 @@ const solution = (input: Input): Tree => {
   return root;
 }
 
-export const solution1 = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string =>  {
   const MAX = 100_000;
 
   const root = solution(input);
@@ -84,7 +85,7 @@ export const solution1 = (input: Input): number | string =>  {
   return sumOfFilteredDirsSizes;
 }
 
-export const solution2 = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string =>  {
   const TOTAL = 70_000_000;
   const NEEDED = 30_000_000;
 

@@ -6,11 +6,12 @@ const nextDay = (m: Array<number>): Array<number> => {
   return a
 }
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return rawInut.split(',').map(Number);
 }
 
-export const solution1 = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string =>  {
   const END_DAY = 80;
   let m = [...Array(9).fill(0)];
 
@@ -23,7 +24,7 @@ export const solution1 = (input: Input): number | string =>  {
   return sum;
 }
 
-export const solution2 = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string =>  {
   const END_DAY = 256;
   let m = [...Array(9).fill(0)];
 

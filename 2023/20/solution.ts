@@ -4,6 +4,7 @@ import { lcm } from "/src/functions/math.ts";
 
 type Input = ModuleSet;
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   const moduleSet = new ModuleSet();
 	const conjunctionTransmitters = new Map<string, Array<string>>();
@@ -42,7 +43,7 @@ export const parseInput = (rawInut: string): Input => {
 	return moduleSet;
 }
 
-export const solution1 = (input: Input): number =>  {
+solutions[0] = (input: Input): number =>  {
 	let iter = 0;
 	let high = 0;
 	let low = 0;
@@ -57,7 +58,7 @@ export const solution1 = (input: Input): number =>  {
   return low * high;
 }
 
-export const solution2 = (input: Input): number =>  {
+solutions[1] = (input: Input): number =>  {
 	input.addModule(new CounterModule('rx'));
 
 	const modules = [...input.getModules().values()];
@@ -82,7 +83,7 @@ export const solution2 = (input: Input): number =>  {
 
 	while (true) {
 		input.pushButton(false, check);
-		if (iter % 1_000_000 === 0) console.log(iter)
+		// if (iter % 1_000_000 === 0) console.log(iter)
 		
 		if (transmitters.filter(tr => tr.highSignals.length < 1).length === 0) break;
 

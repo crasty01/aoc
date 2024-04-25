@@ -1,10 +1,11 @@
 type Input = Array<Array<string>>;
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return rawInut.split(/\r?\n/g).map(line => line.split(''));
 }
 
-export const solution1 = (input: Input): number =>  {
+solutions[0] = (input: Input): number =>  {
 	let sum = 0;
 	const rows = Array.from({ length: input.length }, () => 0);
 
@@ -121,7 +122,7 @@ const cycle = (input: Input): Input => {
 	return input;
 }
 
-export const solution2 = (_input: Input): number =>  {
+solutions[1] = (_input: Input): number =>  {
 	const totalCycles = 1_000_000_000;
 	const cache = new Map<string, number>();
 

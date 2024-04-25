@@ -16,6 +16,7 @@ type Input = {
 	original: string;
 };
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
 	const width = rawInut.indexOf('\r\n')
   const content = rawInut.replace(/\r\n/g, '');
@@ -54,7 +55,7 @@ export const parseInput = (rawInut: string): Input => {
 	}
 }
 
-export const solution1 = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string =>  {
 	let sum = 0;
 
 	for (let i = 0; i < input.symbols.length; i++) {
@@ -77,7 +78,7 @@ export const solution1 = (input: Input): number | string =>  {
 	return sum;
 }
 
-export const solution2 = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string =>  {
 	let sum = 0;
 
 	for (let i = 0; i < input.symbols.length; i++) {

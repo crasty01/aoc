@@ -13,6 +13,7 @@ type Input = {
 	width: number;
 };
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {	
 	const grid = rawInut
 		.trim()
@@ -79,10 +80,10 @@ const solution = (input: Input, minStraight: number, maxStraight: number) => {
 	}
 }
 
-export const solution1 = (input: Input): number =>  {
+solutions[0] = (input: Input): number =>  {
 	return solution(input, 1, 3);
 }
 
-export const solution2 = (input: Input): number =>  {
+solutions[1] = (input: Input): number =>  {
 	return solution(input, 4, 10);
 }

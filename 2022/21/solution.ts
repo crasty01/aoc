@@ -20,6 +20,7 @@ type Monkey = {
 }
 type Input = Map<MonkeyName, Monkey>;
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   const entries = rawInut.replace(/\r\n/g, '\n').split('\n').map(line => {
 		const [name, yell] = line.split(': ');
@@ -53,7 +54,7 @@ export const parseInput = (rawInut: string): Input => {
 	return map;
 }
 
-export const solution1 = (input: Input): number => {
+solutions[0] = (input: Input): number => {
 	const getMonkeyValue = (monkeyName: MonkeyName): number => {
 		const monkey = input.get(monkeyName)!;
 		if (!monkey.value) {
@@ -84,7 +85,7 @@ export const solution1 = (input: Input): number => {
 	return getMonkeyValue('root');
 }
 
-export const solution2 = (input: Input): number => {
+solutions[1] = (input: Input): number => {
 	const tempForHumn = Infinity;
 	const isInf = (monkey: Monkey): boolean => {
 		return monkey.value === Infinity || monkey.value === -Infinity;
@@ -190,5 +191,5 @@ export const solution2 = (input: Input): number => {
 // lgvd: ljgn * ptdq
 // drzm: hmdt - zczc
 // hmdt: 32`;
-// // console.log('Example 1:', solution1(parseInput(example)));
-// console.log('Example 1:', solution2(parseInput(example), true));
+// console.log('Example 1:', solutions[0](parseInput(example)));
+// console.log('Example 1:', solutions[1](parseInput(example), true));

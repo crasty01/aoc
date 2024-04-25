@@ -2,6 +2,7 @@ import { clearScreen } from "https://deno.land/x/cliffy@v0.25.4/ansi/ansi_escape
 
 type Input = Array<string>;
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return rawInut.replace(/\r/, '').split('\n');
 }
@@ -198,8 +199,8 @@ const solveForDirection = (input: Input, directions: Array<Laser>, vis = false) 
 		const tile = input[current.y][current.x];
 		// if (viz && tile === '.') {
 		// 	visArray[current.y][current.x] = dirToSymbol[current.dir];
-		// 	console.log(clearScreen);
-		// 	console.log(visArray.map(e => e.join(',')).join('\n'))
+			// console.log(clearScreen);
+			// console.log(visArray.map(e => e.join(',')).join('\n'))
 		// }
 		
 		const key = `${current.x}-${current.y}}` as Key;
@@ -216,7 +217,7 @@ const solveForDirection = (input: Input, directions: Array<Laser>, vis = false) 
   return usedTiles.size;
 }
 
-export const solution1 = (input: Input): number =>  {
+solutions[0] = (input: Input): number =>  {
   return solveForDirection(input, [{
 		x: 0,
 		y: 0,
@@ -224,7 +225,7 @@ export const solution1 = (input: Input): number =>  {
 	}]);
 }
 
-export const solution2 = (input: Input): number =>  {
+solutions[1] = (input: Input): number =>  {
 	let max = 0;
 
 	for (let i = 0; i < input.length; i++) {

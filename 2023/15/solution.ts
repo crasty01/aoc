@@ -1,5 +1,6 @@
 type Input = string;
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return rawInut;
 }
@@ -13,7 +14,7 @@ const encode = (string: string) => {
   return hash;
 }
 
-export const solution1 = (input: Input): number =>  {
+solutions[0] = (input: Input): number =>  {
 	let sum = 0;
 	let current = '';
 	for (let i = 0; i <= input.length; i++) {
@@ -28,7 +29,7 @@ export const solution1 = (input: Input): number =>  {
   return sum;
 }
 
-export const solution2 = (input: Input): number =>  {
+solutions[1] = (input: Input): number =>  {
 	let sum = 0;
 	const instructions = input.split(',');
 	const map = Array.from({ length: 256 }, () => [] as Array<[string, number]>);

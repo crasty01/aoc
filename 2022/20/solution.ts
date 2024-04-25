@@ -1,5 +1,6 @@
 type Input = Array<number>;
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return rawInut.split('\r\n').map((line) =>  parseInt(line, 10));
 }
@@ -38,27 +39,27 @@ const getSum = (input: Array<number>): number => {
   const a = getNewIndex(zeroIndex, 1000, input.length);
   const b = getNewIndex(a, 1000, input.length);
   const c = getNewIndex(b, 1000, input.length);
-  console.log(input[a], input[b], input[c]);
+  // console.log(input[a], input[b], input[c]);
   return input[a] + input[b] + input[c];
 }
 
-export const solution1 = (input: Input): number =>  {
+solutions[0] = (input: Input): number =>  {
   const mixed = mix(input);
   return getSum(mixed);
 }
 
-export const solution2 = (input: Input, run = false): number =>  {
+solutions[1] = (input: Input, run = false): number =>  {
   if (!run) return -1;
   let mixed = input.map((value) => value * 811589153);
-  console.log(mixed);
+  // console.log(mixed);
   
   for (let i = 0; i < 10; i++) {
     mixed = mix(mixed);
-    console.log(mixed);
+    // console.log(mixed);
   }
   return getSum(mixed);
 }
 
-const example = `1\r\n2\r\n-3\r\n3\r\n-2\r\n0\r\n4`;
-// console.log('Example 1:', solution1(parseInput(example)));
-console.log('Example 2:', solution2(parseInput(example), true));
+// const example = `1\r\n2\r\n-3\r\n3\r\n-2\r\n0\r\n4`;
+// console.log('Example 1:', solutions[0](parseInput(example)));
+// console.log('Example 2:', solutions[1](parseInput(example), true));

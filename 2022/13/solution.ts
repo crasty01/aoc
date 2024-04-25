@@ -4,6 +4,7 @@ type Item = ItemArray | ItemNumber;
 type Pair = [Array<Item>, Array<Item>];
 type Input = Array<Pair>;
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   const pairs = rawInut.split('\r\n\r\n');
   return pairs.map((pair) => {
@@ -47,7 +48,7 @@ const compare = (a: Item, b: Item): -1 | 0 | 1 => {
 }
 
 
-export const solution1 = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string =>  {
   let numberOfPairsInRightOrder = 0;
 
   for (let index = 0; index < input.length; index++) {
@@ -60,7 +61,7 @@ export const solution1 = (input: Input): number | string =>  {
   return numberOfPairsInRightOrder;
 }
 
-export const solution2 = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string =>  {
   const dividerPackets = [[[2]], [[6]]];
   const list: Array<Item> = [...dividerPackets];
   for (let index = 0; index < input.length; index++) {

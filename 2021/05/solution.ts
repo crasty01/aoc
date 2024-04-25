@@ -40,13 +40,14 @@ const getPointsVertical = (y: number, x1: number, x2: number): Array<string> => 
   return points;
 }
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   const input = rawInut.split('\r\n').filter(e => {
     return REGEX.test(e)
   }).map(e => {
     const groups = e.match(REGEX)?.groups;
     if (!groups) {
-      console.log(e, groups)
+      // console.log(e, groups)
       throw new Error("wrong input");
     }
     const { x1, y1, x2, y2 } = groups;
@@ -61,7 +62,7 @@ export const parseInput = (rawInut: string): Input => {
   return input;
 }
 
-export const solution1 = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string =>  {
   const crossed: { [key: string]: number } = {};
 
   for (const line of input) {
@@ -85,7 +86,7 @@ export const solution1 = (input: Input): number | string =>  {
   return Object.entries(crossed).reduce((acc, e) => e[1] >= 2 ? acc + 1 : acc, 0);
 }
 
-export const solution2 = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string =>  {
   const crossed: { [key: string]: number } = {};
 
   for (const line of input) {

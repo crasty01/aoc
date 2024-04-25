@@ -4,6 +4,7 @@ type Input = Array<Game>;
 const colors = ['red', 'green', 'blue'] as const;
 const maxes = [12, 13, 14] as const;
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return rawInut.split('\r\n').map(line => {
 		const [_, sets_raw] = line.split(': ');
@@ -20,7 +21,7 @@ export const parseInput = (rawInut: string): Input => {
 	});
 }
 
-export const solution1 = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string =>  {
 	let sum = 0;
 	
 	for (let i = 0; i < input.length; i++) {
@@ -37,7 +38,7 @@ export const solution1 = (input: Input): number | string =>  {
 	return sum;
 }
 
-export const solution2 = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string =>  {
 	let sum = 0;
 	
 	for (let i = 0; i < input.length; i++) {

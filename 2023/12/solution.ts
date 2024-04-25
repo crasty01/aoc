@@ -5,6 +5,7 @@ type Input = Array<{
 	sizes: Array<number>;
 }>;
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return rawInut.split(/\r?\n/g).map(line => {
 		const [conditions, sizesData] = line.split(' ');
@@ -47,7 +48,7 @@ const findArrangements = (
   return result;
 };
 
-export const solution1 = (input: Input): number => {
+solutions[0] = (input: Input): number => {
 	let sum = 0;
 
 	for (const line of input) {
@@ -57,7 +58,7 @@ export const solution1 = (input: Input): number => {
   return sum;
 };
 
-export const solution2 = (input: Input): number => {
+solutions[1] = (input: Input): number => {
 	let sum = 0;
 
 	for (const line of input) {

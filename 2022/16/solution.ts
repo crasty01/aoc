@@ -17,6 +17,7 @@ const parseLine = (line: string) => {
   };
 };
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   const flows = new Map<string, number>();
   const tunnels = new Map<string, string[]>();
@@ -68,7 +69,7 @@ const solution = (
   return dfs;
 };
 
-export const solution1 = (input: Input): number | string => {
+solutions[0] = (input: Input): number | string => {
   const START_TIME = 30;
   const START_VALVE = "AA";
 
@@ -77,7 +78,7 @@ export const solution1 = (input: Input): number | string => {
   return dfs(START_TIME, START_VALVE, 0);
 };
 
-export const solution2 = (input: Input): number | string => {
+solutions[1] = (input: Input): number | string => {
   const START_TIME = 26;
   const START_VALVE = "AA";
 
@@ -95,5 +96,5 @@ export const solution2 = (input: Input): number | string => {
 
 const exampleInput =
   `Valve AA has flow rate=0; tunnels lead to valves DD, II, BB\r\nValve BB has flow rate=13; tunnels lead to valves CC, AA\r\nValve CC has flow rate=2; tunnels lead to valves DD, BB\r\nValve DD has flow rate=20; tunnels lead to valves CC, AA, EE\r\nValve EE has flow rate=3; tunnels lead to valves FF, DD\r\nValve FF has flow rate=0; tunnels lead to valves EE, GG\r\nValve GG has flow rate=0; tunnels lead to valves FF, HH\r\nValve HH has flow rate=22; tunnel leads to valve GG\r\nValve II has flow rate=0; tunnels lead to valves AA, JJ\r\nValve JJ has flow rate=21; tunnel leads to valve II`;
-// console.log(solution1(parseInput(exampleInput), true));
-// console.log(solution2(parseInput(exampleInput), true));
+// console.log(solutions[0](parseInput(exampleInput), true));
+// console.log(solutions[1](parseInput(exampleInput), true));

@@ -13,6 +13,7 @@ type Input = {
 	},
 };
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
 	const content = rawInut.replace(/\r?\n/g, '');
 	const width = rawInut.replace('\r\n', '\n').indexOf('\n');
@@ -70,10 +71,10 @@ const solution = (input: Input, expansion: number): number =>  {
   return sum;
 }
 
-export const solution1 = (input: Input): number =>  {
+solutions[0] = (input: Input): number =>  {
   return solution(input, 2);
 }
 
-export const solution2 = (input: Input, run = false): number =>  {
+solutions[1] = (input: Input, run = false): number =>  {
 	return solution(input, 1_000_000);
 }

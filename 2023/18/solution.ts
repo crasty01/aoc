@@ -5,6 +5,7 @@ type Line = {
 }
 type Input = Array<Line & { col: string }>;
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
 	const regex = new RegExp(/^(?<dir>[UDLR]) (?<len>\d+) \(#(?<col>[0-9a-f]{6})\)$/)
   return rawInut.split(/\r?\n/g).map(line => {
@@ -52,14 +53,14 @@ const calculteArea = (corners: Array<[number, number]>) => {
 }
 
 
-export const solution1 = (input: Input): number =>  {
+solutions[0] = (input: Input): number =>  {
 	const instructions: Array<Line> = input.map(e => ({ dir: e.dir, len: e.len }));
 	const [corners, b] = createCorners(instructions);
 	const A = calculteArea(corners);
 	return A - (b / 2) + b + 1;
 }
 
-export const solution2 = (input: Input): number =>  {
+solutions[1] = (input: Input): number =>  {
 	const dirs = 'RDLU';
 	const instructions: Array<Line> = input.map(e => ({
 		dir: dirs[parseInt(e.col.at(-1)!)] as Dir,

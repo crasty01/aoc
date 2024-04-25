@@ -10,11 +10,12 @@ const getPos = (array: Array<number>): [number, number] => {
   return [Math.floor(sum / array.length), Math.ceil(sum / array.length)];
 }
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return rawInut.split(',').map(Number);
 }
 
-export const solution1 = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string =>  {
   const median = calculateMedian(input);
   let fuelCost = 0;
   for (const crab of input) {
@@ -23,7 +24,7 @@ export const solution1 = (input: Input): number | string =>  {
   return fuelCost;
 }
 
-export const solution2 = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string =>  {
   const [floor, ceil] = getPos(input);
   const fuelCost = {
     floor: 0,

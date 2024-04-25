@@ -13,6 +13,7 @@ type Position = {
   y: number;
 }
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   const [dots, folding] = rawInut.split('\r\n\r\n')
   return {
@@ -33,7 +34,7 @@ export const parseInput = (rawInut: string): Input => {
   }
 }
 
-export const solution1 = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string =>  {
   let dots: Set<string> = new Set()
   for (let i = 0; i < input.dots.length; i++) {
     dots.add(`${input.dots[i].x}-${input.dots[i].y}`)
@@ -56,7 +57,7 @@ export const solution1 = (input: Input): number | string =>  {
   return dots.size;
 }
 
-export const solution2 = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string =>  {
   let dots: Set<string> = new Set()
   for (let i = 0; i < input.dots.length; i++) {
     dots.add(`${input.dots[i].x}-${input.dots[i].y}`)

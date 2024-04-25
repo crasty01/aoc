@@ -3,6 +3,7 @@ type Input = {
 	distances: Array<number>;
 };
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
 	const numberRegex = new RegExp(/\d+/g);
   const [time_raw, distance_raw] = rawInut.replace(/\r\n/g, '\n').split('\n');
@@ -16,7 +17,7 @@ export const parseInput = (rawInut: string): Input => {
 	}
 }
 
-export const solution1 = (input: Input): number =>  {
+solutions[0] = (input: Input): number =>  {
 	let acc = 1;
 
 	for (let i = 0; i < input.times.length; i++) {
@@ -35,7 +36,7 @@ export const solution1 = (input: Input): number =>  {
   return acc;
 }
 
-export const solution2 = (input: Input): number =>  {
+solutions[1] = (input: Input): number =>  {
 	const time = parseInt(input.times.join(''));
 	const distance =  parseInt(input.distances.join(''));
 

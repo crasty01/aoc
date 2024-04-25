@@ -3,11 +3,12 @@ import { CellType, Grid } from "./Grid.ts";
 
 type Input = Array<string>;
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return rawInut.split(/\r?\n/g);
 };
 
-export const solution1 = (input: Input): number => {
+solutions[0] = (input: Input): number => {
   const grid = new Grid(
     input.length,
     input[0].length,
@@ -17,7 +18,7 @@ export const solution1 = (input: Input): number => {
   return grid.fill(start.x, start.y, 64);
 };
 
-export const solution2 = (input: Input): number => {
+solutions[1] = (input: Input): number => {
   const grid = new Grid(
     input.length,
     input[0].length,

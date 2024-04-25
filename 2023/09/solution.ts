@@ -1,12 +1,13 @@
 type Input = Array<Array<number>>;
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return rawInut.split(/\r?\n/).map(line => {
 		return line.split(' ').map(e => parseInt(e, 10));
 	});
 }
 
-export const solution1 = (input: Input): number =>  {
+solutions[0] = (input: Input): number =>  {
 	let sum = 0;
 	for (const line of input) {
 		const differences: Array<Array<number>> = [[...line]];
@@ -36,7 +37,7 @@ export const solution1 = (input: Input): number =>  {
   return sum;
 }
 
-export const solution2 = (input: Input): number =>  {
+solutions[1] = (input: Input): number =>  {
 	let sum = 0;
 	for (const line of input) {
 		const differences: Array<Array<number>> = [[...line]];

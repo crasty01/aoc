@@ -1,6 +1,7 @@
 type Pos = [number, number];
 type Input = Array<[Pos, Pos]>;
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return rawInut.split('\r\n').map((line) => {
     const { sx, sy, bx, by } = /Sensor at x=(?<sx>-?\d+), y=(?<sy>-?\d+): closest beacon is at x=(?<bx>-?\d+), y=(?<by>-?\d+)/.exec(line)!.groups!;
@@ -43,7 +44,7 @@ const solution = (input: Input, row: number): Array<[number, number]> =>  {
   return lines;
 }
 
-export const solution1 = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string =>  {
   const ROW = 2000000;
 
   const beaconsAndSensors = new Set(input.flat(1).filter((pos) => pos[1] === ROW).map((pos) => pos.join(',')));
@@ -57,7 +58,7 @@ export const solution1 = (input: Input): number | string =>  {
   return sum - beaconsAndSensors.size;
 }
 
-export const solution2 = (input: Input, MIN = 0, MAX = 4_000_000): number | string =>  {
+solutions[1] = (input: Input, MIN = 0, MAX = 4_000_000): number | string =>  {
   const spots = new Set<string>();
 
   for (let row = MIN; row <= MAX; row++) {

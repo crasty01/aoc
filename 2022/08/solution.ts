@@ -12,13 +12,14 @@ const createGrid = <T extends number | string | any>(
   return grid;
 };
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return rawInut.split("\r\n").map((line) =>
     line.split("").map((cell) => parseInt(cell, 10))
   );
 };
 
-export const solution1 = (input: Input): number | string => {
+solutions[0] = (input: Input): number | string => {
   const height = input.length;
   const width = input[0].length;
   const g = createGrid(
@@ -67,7 +68,7 @@ export const solution1 = (input: Input): number | string => {
   return sum;
 };
 
-export const solution2 = (input: Input): number | string => {
+solutions[1] = (input: Input): number | string => {
   const height = input.length;
   const width = input[0].length;
   let max = 0;

@@ -4,6 +4,7 @@ type Command = {
   value: number;
 };
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return rawInut.split('\n').map(e => {
     const [key, value] = e.split(' ');
@@ -14,7 +15,7 @@ export const parseInput = (rawInut: string): Input => {
   });
 }
 
-export const solution1 = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string =>  {
   const pos = {
     x: 0,
     y: 0,
@@ -37,7 +38,7 @@ export const solution1 = (input: Input): number | string =>  {
   return pos.x * pos.y;
 }
 
-export const solution2 = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string =>  {
   const pos = {
     x: 0,
     y: 0,

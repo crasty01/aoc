@@ -1,5 +1,6 @@
 type Input = Array<Array<[number, number]>>;
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return rawInut.split('\r\n').map((line) => {
     return line.split(' -> ').map((coord) => 
@@ -59,7 +60,7 @@ const makeItRain = (
   return toReturn(x, y);
 }
 
-export const solution1 = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string =>  {
   const START = [500, 0] as const;
   const MAX_ITERATIONS = 10000;
 
@@ -77,7 +78,7 @@ export const solution1 = (input: Input): number | string =>  {
   return rocks.size - beforeStart;
 }
 
-export const solution2 = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string =>  {
   const START = [500, 0] as const;
   const MAX_ITERATIONS = 10000000; // just to have some limit... it's not needed
 

@@ -3,11 +3,12 @@ import { assert } from "std/testing/asserts.ts";
 
 type Input = Array<Array<number>>;
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return rawInut.split('\r\n').map(e => e.split('').map(Number));
 }
 
-export const solution1 = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string =>  {
   const rows = input.length;
   const cols = input[0].length;
   const grid = new Grid(rows, cols, (x, y) => input[y][x])
@@ -31,7 +32,7 @@ export const solution1 = (input: Input): number | string =>  {
     if (current === end) break;
 
     for (const neighbour of current.neighbours) {
-      if (closed.includes(neighbour)) continue; // not reaversable or in closed
+      if (closed.includes(neighbour)) continue; // not reversable or in closed
       const g_tmp = current.g + neighbour.cost;
       if (g_tmp < neighbour.g) {
         neighbour.g = g_tmp;
@@ -51,7 +52,7 @@ export const solution1 = (input: Input): number | string =>  {
   return sum;
 }
 
-export const solution2 = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string =>  {
   const rows_og = input.length;
   const cols_og = input[0].length;
 

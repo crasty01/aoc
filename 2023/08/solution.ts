@@ -5,6 +5,7 @@ type Input = {
 	nodes: Map<string, [string, string]>;
 };
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
 	const nodeRegex = new RegExp(/^(?<node>\w{3}) = \((?<left>\w{3}), (?<right>\w{3})\)$/);
   const [instructions, network] = rawInut.replace(/\r\n/g, '\n').split('\n\n');
@@ -20,7 +21,7 @@ export const parseInput = (rawInut: string): Input => {
 	}
 }
 
-export const solution1 = (input: Input): number =>  {
+solutions[0] = (input: Input): number =>  {
 	let currentNode = 'AAA';
 	let steps = 0;
 	const instructions = [...input.instructions].map(e => Number(e === 'R'));
@@ -37,14 +38,14 @@ export const solution1 = (input: Input): number =>  {
   return steps;
 }
 
-export const solution2 = (input: Input): number =>  {
+solutions[1] = (input: Input): number =>  {
 	const instructions = [...input.instructions].map(e => Number(e === 'R'));
 	const entries = [...input.nodes.entries()];
 	const starts = entries.map(([key]) => key).filter((node) => {
 		return node.endsWith('A');
 	});
 
-	console.log(starts)
+	// console.log(starts)
 
 	const steps = starts.map(() => 0);
 	for (let i = 0; i < starts.length; i++) {

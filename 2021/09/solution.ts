@@ -1,10 +1,11 @@
 type Input = Array<Array<number>>;
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return rawInut.split('\r\n').map(e => e.split('').map(Number));
 }
 
-export const solution1 = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string =>  {
   const height: number = input.length;
   const width: number = input[0].length;
 
@@ -30,6 +31,6 @@ export const solution1 = (input: Input): number | string =>  {
   return sum
 }
 
-export const solution2 = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string =>  {
   return 0;
 }

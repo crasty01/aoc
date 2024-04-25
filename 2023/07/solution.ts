@@ -4,6 +4,7 @@ type Card = {
 };
 type Input = Array<Card>;
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return rawInut.replace('\r\n', '\n').split('\n').map(line => {
 		const [hand, bet] = line.split(' ');
@@ -38,7 +39,7 @@ const getHandValueBasic = (hand: string): number => {
 	}
 }
 
-export const solution1 = (input: Input): number =>  {
+solutions[0] = (input: Input): number =>  {
 	const cardValues = 'AKQJT98765432';
 	let sum = 0;
 
@@ -106,7 +107,7 @@ const getHandValueAdvanced = (hand: string): number => {
 	}
 }
 
-export const solution2 = (input: Input): number =>  {
+solutions[1] = (input: Input): number =>  {
 	const cardValues = 'AKQT98765432J';
 	let sum = 0;
 

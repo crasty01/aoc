@@ -10,6 +10,7 @@ type Part = {
 	pos: number;
 }
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
 	const width = rawInut.indexOf('\r\n') > -1 ? rawInut.indexOf('\r\n') : rawInut.indexOf('\n');
   const content =  rawInut.replace(/\r?\n/g, '');
@@ -41,7 +42,7 @@ const getPositionBySymbol = (pos: number, width: number, symbol: string): Array<
 	}
 }
 
-export const solution1 = (input: Input): number =>  {
+solutions[0] = (input: Input): number =>  {
 	const path: Array<Part> = [{
 		symbol: 'S',
 		pos: input.start,
@@ -79,7 +80,7 @@ export const solution1 = (input: Input): number =>  {
   return Math.floor(path.length / 2);
 }
 
-export const solution2 = (input: Input): number =>  {
+solutions[1] = (input: Input): number =>  {
 	const path: Array<Part> = [{
 		symbol: 'S',
 		pos: input.start,

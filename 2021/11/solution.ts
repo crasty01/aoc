@@ -19,11 +19,12 @@ const next = (grid: Grid): number => {
   return blinked.size
 };
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return rawInut.split('\r\n').map(e => e.split('').map(Number));
 }
 
-export const solution1 = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string =>  {
   const g = new Grid(10, 10, (x, y) => input[y][x]);
   let n = 0;
   for (let i = 0; i < 100; i++) {
@@ -32,7 +33,7 @@ export const solution1 = (input: Input): number | string =>  {
   return n;
 }
 
-export const solution2 = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string =>  {
   const g = new Grid(10, 10, (x, y) => input[y][x]);
   let i = 0, allFlashed = false;
   do {

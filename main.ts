@@ -8,6 +8,12 @@ consoleClear,
 import { join as joinPath } from 'std/path/mod.ts';
 import { parse } from "std/flags/mod.ts";
 
+type Result = {
+	index: number;
+	result: number | string;
+	performance: number;
+}
+
 let iteration = 0;
 
 const getInut = async (year: string, day: string) => {
@@ -15,7 +21,11 @@ const getInut = async (year: string, day: string) => {
   return await Deno.readTextFile(path);
 }
 
-const getSolutions = async (year: string, day: string, iteration?: number) => {
+const getSolutions = async <Input>(year: string, day: string, iteration?: number): Promise<{
+	parseInput: (rawInut: string) => Input;
+	solutions: Array<(input: Input) => Promise<number | string>>;
+	tests?: Array<(input: Input) => Promise<number | string>>;
+}> => {
   const path = `file:\\\\${joinPath(Deno.cwd(), year, day, `solution.ts#${iteration}`)}`;
   return await import(path);
 }
@@ -39,23 +49,36 @@ const run = async (iteration = 0) => {
     const days = config.day ? [config.day] : await getAllDaysInAYear(year);
 
     for (const day of days) {
-      const { parseInput, solution1, solution2 } = await getSolutions(year, day, iteration);
+      const { parseInput, solutions, tests } = await getSolutions(year, day, iteration);
       const rawInut = await getInut(year, day);
+			const functions = parsedArgs['include-tests'] ? [...solutions, ...(tests ?? [])] : solutions;
+			const results: Array<Result> = await Promise.all(functions.map((solution, solutionIndex) => new Promise<Result>((resolve, reject) => {
+				const solutionPerformanceStart = performance.now();
+				console.log(solution.name)
+				Promise.resolve(solution(parseInput(rawInut))).then((result) => {
+					const solutionPerformanceEnd = performance.now();
+					const solutionPerformance = Math.round((solutionPerformanceEnd - solutionPerformanceStart) * 100) / 100;
 
-      const solution1PerformanceStart = performance.now();
-      const solution1Result = await solution1(parseInput(rawInut));
-      const solution1PerformanceEnd = performance.now();
-      const solution1Performance = Math.round((solution1PerformanceEnd - solution1PerformanceStart) * 100) / 100;
-      const solution2PerformanceStart = performance.now();
-      const solution2Result = await solution2(parseInput(rawInut));
-      const solution2PerformanceEnd = performance.now();
-      const solution2Performance = Math.round((solution2PerformanceEnd - solution2PerformanceStart) * 100) / 100;
+					resolve({
+						index: solutionIndex,
+						performance: solutionPerformance,
+						result: result,
+					})
+				}).catch(reject)
+			})));
 
 			if (!parsedArgs['no-results']) {
-				renderSolutionTable([
-					[`${year}-${day}-01`, solution1Result, `${solution1Performance} ms`],
-					[`${year}-${day}-02`, solution2Result, `${solution2Performance} ms`],
-				], { year, day })
+				renderSolutionTable(results.map(({
+					index,
+					result,
+					performance
+				}) => [
+					`${year}-${day}-${(index + 1).toString().padStart(2, '0')}`,
+					result,
+					`${performance} ms`
+				]),
+					{ year, day }
+				)
 			}
 
     }

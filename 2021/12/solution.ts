@@ -12,6 +12,7 @@ const step = (caves: Input, filter: (e: string, mem: Array<string>) => boolean, 
   return f;
 }
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   const caves: Input = {};
   rawInut.split('\r\n').map(e => e.split('-')).forEach(([a, b]) => {
@@ -23,14 +24,14 @@ export const parseInput = (rawInut: string): Input => {
   return caves;
 }
 
-export const solution1 = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string =>  {
   return step(
     input,
     (e, mem) => !mem.includes(e) || e.toUpperCase() === e
   ).length;
 }
 
-export const solution2 = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string =>  {
   return step(
     input,
     (e, mem) => {

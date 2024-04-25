@@ -11,6 +11,7 @@ type OperationNoop = {
 };
 type Input = Array<OperationAddx | OperationNoop>;
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return rawInut.split('\r\n').map((line) => {
     const [type, value] = line.split(' ') as [OperationType, string | undefined];
@@ -56,7 +57,7 @@ const solution = function* (input: Input) {
   return;
 }
 
-export const solution1 = (input: Input): number =>  {
+solutions[0] = (input: Input): number =>  {
   const SKIP = 20;
 
   let cycle = 1;
@@ -80,7 +81,7 @@ export const solution1 = (input: Input): number =>  {
   return sum;
 }
 
-export const solution2 = (input: Input): string => {
+solutions[1] = (input: Input): string => {
   const WIDTH = 40;
   const HEIGHT = 6;
   const bitArray = new BitArray(WIDTH * HEIGHT);

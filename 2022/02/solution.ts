@@ -1,10 +1,11 @@
 type Input = Array<string>; 
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return rawInut.split('\r\n').map(e => e.split(' ').join(''));
 }
 
-export const solution1 = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string =>  {
   let score = 0;
   const getScore = new Map([
     ['AX', 3 + 1],
@@ -27,7 +28,7 @@ export const solution1 = (input: Input): number | string =>  {
   return score;
 }
 
-export const solution2 = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string =>  {
   let score = 0;
   const getScore = new Map([
     ['AX', 0 + 3],

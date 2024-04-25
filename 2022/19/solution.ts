@@ -7,6 +7,7 @@ type Input = Array<{
 }>;
 type Cache = Map<string, number>;
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return rawInut.split('\r\n').map((line, lineIndex) => {
     const ms = [0, 0, 0, Infinity];
@@ -75,10 +76,10 @@ const solution = (input: Input, time: number): Array<number> =>  {
   return input.map(({ bp, ms }) => dfs(bp, ms, new Map(), time, [1, 0, 0, 0], [0, 0, 0, 0]));
 }
 
-export const solution1 = (input: Input): number =>  {
+solutions[0] = (input: Input): number =>  {
   return solution(input, 24).map((max, i) => max * (i + 1)).reduce((a, b) => a + b, 0);
 }
 
-export const solution2 = (input: Input): number =>  {
+solutions[1] = (input: Input): number =>  {
   return solution(input.slice(0, 3), 32).reduce((a, b) => a * b, 1);
 }

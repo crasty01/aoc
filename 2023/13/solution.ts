@@ -1,6 +1,7 @@
 type Image = Array<string>;
 type Input = Array<Image>;
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
 	return rawInut.split(/\r?\n\r?\n/g).map(image => image.split(/\r?\n/g));
 }
@@ -49,7 +50,7 @@ const compareVertically = (image: Image, exactNumberOfMistakes = 0): number => {
 	return 0;
 }
 
-export const solution1 = (input: Input): number =>  {
+solutions[0] = (input: Input): number =>  {
 	let sum = 0;
 
 	for (const image of input) {
@@ -60,7 +61,7 @@ export const solution1 = (input: Input): number =>  {
   return sum;
 }
 
-export const solution2 = (input: Input): number =>  {
+solutions[1] = (input: Input): number =>  {
 	let sum = 0;
 
 	for (const image of input) {

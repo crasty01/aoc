@@ -28,11 +28,12 @@ const r = (char: string) => {
   }
 };
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return rawInut.split("\r\n");
 };
 
-export const solution1 = (input: Input): number | string => {
+solutions[0] = (input: Input): number | string => {
   let sum = 0;
   for (const line of input) {
     let l = line;
@@ -52,7 +53,7 @@ export const solution1 = (input: Input): number | string => {
   return sum;
 };
 
-export const solution2 = (input: Input): number | string => {
+solutions[1] = (input: Input): number | string => {
   const scores = [];
   for (const line of input) {
     let l = line;
@@ -76,6 +77,6 @@ export const solution2 = (input: Input): number | string => {
       );
     }
   }
-  console.log(scores)
+  // console.log(scores)
   return scores.sort((a, b) => a - b)[Math.floor(scores.length / 2)];
 };

@@ -5,11 +5,12 @@ const getPriority = (char: string) => {
   return charCode > 90 ? charCode - 96 : charCode - 38;
 }
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return rawInut.replace(/\r\n/g, "\n").split("\n");
 };
 
-export const solution1 = (input: Input): number | string => {
+solutions[0] = (input: Input): number | string => {
   let s = 0;
   for (const line of input) {
     const half = Math.floor(line.length / 2);
@@ -29,7 +30,7 @@ export const solution1 = (input: Input): number | string => {
   return s;
 };
 
-export const solution2 = (input: Input): number | string => {
+solutions[1] = (input: Input): number | string => {
   const GROUP_SIZE = 3;
   let sum = 0;
   for (let i = 0; i < input.length / GROUP_SIZE; i++) {

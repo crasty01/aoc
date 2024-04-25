@@ -1,10 +1,11 @@
 type Input = Array<string>; 
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   return rawInut.split('\n');;
 }
 
-export const solution1 = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string =>  {
   const gamma_arr = [...Array(12).fill(0)];
   for (let i = 0; i < input.length; i++) {
     for (let j = 0; j < gamma_arr.length; j++) {
@@ -16,7 +17,7 @@ export const solution1 = (input: Input): number | string =>  {
   return gamma * epsilon;
 }
 
-export const solution2 = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string =>  {
   const l = input[0].length;
   let a = [...input];
   let b = [...input];

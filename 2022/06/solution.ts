@@ -1,5 +1,6 @@
 type Input = string;
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (input: string): string => {
   return input;
 };
@@ -26,10 +27,10 @@ const binarySolution = (input: Input, CHARS: number): number | string => {
   return -1;
 }
 
-export const solution1 = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string =>  {
   return binarySolution(input, 4)
 }
 
-export const solution2 = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string =>  {
   return binarySolution(input, 14)
 }

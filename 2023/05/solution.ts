@@ -8,6 +8,7 @@ type Input = {
 	maps: Array<Array<Map>>
 };
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
 	const regexNumbers = new RegExp(/\d+/g);
 	const [seed_raw, ...maps_raw] = rawInut.replace(/\r\n/g, '\n').split('\n\n');
@@ -32,7 +33,7 @@ const applyMap = (input: number, maps: Array<Map>) => {
 	return input + map.dist - map.src;
 }
 
-export const solution1 = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string =>  {
 	let min = Infinity;
 
 	for (const seed of input.seeds) {
@@ -101,7 +102,7 @@ const applyMapAdvanced = (_ranges: Array<Range>, maps: Array<Map>): Array<Range>
 	return output;
 }
 
-export const solution2 = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string =>  {
 	let min = Infinity;
 
 	for (let i = 0; i < input.seeds.length; i += 2) {
@@ -119,7 +120,7 @@ export const solution2 = (input: Input): number | string =>  {
 
 // old naive approach:
 
-// export const solution2 = (input: Input, run = false): number | string =>  {
+// solutions[1] = (input: Input, run = false): number | string =>  {
 // 	// if (!run) return 0;
 // 	let min = Infinity;
 

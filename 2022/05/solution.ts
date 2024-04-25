@@ -10,6 +10,7 @@ const rotateArray = <T extends string | number | undefined | boolean>(array: Arr
   return matrix;
 }
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   const [rawStack, rawMoves] = rawInut.split('\r\n\r\n');
   
@@ -34,7 +35,7 @@ export const parseInput = (rawInut: string): Input => {
   }
 }
 
-export const solution1 = ({ stack, moves }: Input): number | string =>  {
+solutions[0] = ({ stack, moves }: Input): number | string =>  {
   for (const { from, to, n } of moves) {
     const [f, tmp] = [stack[from].slice(0, -1 * n), stack[from].slice(-1 * n)];
     stack[from] = f;
@@ -43,7 +44,7 @@ export const solution1 = ({ stack, moves }: Input): number | string =>  {
   return stack.map(line => line.at(-1)!).join('');
 }
 
-export const solution2 = async ({ stack, moves }: Input): Promise<number | string> =>  {
+solutions[1] = async ({ stack, moves }: Input): Promise<number | string> =>  {
   for await (const { from, to, n } of moves) {
     const [f, tmp] = [stack[from].slice(0, -1 * n), stack[from].slice(-1 * n)];
     stack[from] = f;

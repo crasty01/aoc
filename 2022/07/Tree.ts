@@ -139,5 +139,5 @@ tree.addDirectory(['/'], names[8]);
 tree.addFile(['/', names[8]], names[9], 10);
 tree.addFile(['/', names[8]], names[9], 10);
 
-console.log(tree.toString());
+// console.log(tree.toString());
 */

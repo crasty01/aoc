@@ -46,6 +46,7 @@ const solution = (input: Input, STEPS: number, getResult: (a: boolean) => number
   return max[1] - min[1] + getResult(max[0] === LAST_CHAR)
 }
 
+export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
   const [template, pair] = rawInut.split('\r\n\r\n')
   return {
@@ -57,10 +58,10 @@ export const parseInput = (rawInut: string): Input => {
   }
 }
 
-export const solution1 = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string =>  {
   return solution(input, 10, (a => a ? 0 : -1));
 }
 
-export const solution2 = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string =>  {
   return solution(input, 40, (a => a ? 1 : -1));
 }
