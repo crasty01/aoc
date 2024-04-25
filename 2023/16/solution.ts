@@ -1,4 +1,4 @@
-import { clearScreen } from "https://deno.land/x/cliffy@v0.25.4/ansi/ansi_escapes.ts";
+// import { clearScreen } from "https://deno.land/x/cliffy@v0.25.4/ansi/ansi_escapes.ts";
 
 type Input = Array<string>;
 
