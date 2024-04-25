@@ -184,7 +184,11 @@ const handleMovement = (tile: string, current: Laser) => {
 // 	[FROM_BOTTOM]: '^',
 // }
 
-const solveForDirection = (input: Input, directions: Array<Laser>, vis = false) => {
+const solveForDirection = (
+	input: Input,
+	directions: Array<Laser>,
+	// vis = false
+) => {
 	const usedTiles = new Set<Key>();
 	const usedTilesWithDir = new Set<KeyWithDir>();
 	const queue: Array<Laser> = [...directions];
