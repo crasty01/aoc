@@ -135,8 +135,6 @@ export const parseInput = (rawInut: string): Input => {
     nodes.set(node.cell.index, node);
   }
 
-  // console.log(nodes);
-
   return {
     grid,
     crossroads,
@@ -147,37 +145,9 @@ export const parseInput = (rawInut: string): Input => {
 };
 
 solutions[0] = (input: Input, run = false): number => {
-  // if (!run) return -1;
 	return find_longest_path(input.start.index, input.end.index, input.nodes);
 };
 
 solutions[1] = (input: Input, run = false): number => {
-  // if (!run) return -1;
 	return find_longest_path(input.start.index, input.end.index, input.nodes, true);
 };
-
-const example = `#.#####################
-#.......#########...###
-#######.#########.#.###
-###.....#.>.>.###.#.###
-###v#####.#v#.###.#.###
-###.>...#.#.#.....#...#
-###v###.#.#.#########.#
-###...#.#.#.......#...#
-#####.#.#.#######.#.###
-#.....#.#.#.......#...#
-#.#####.#.#.#########v#
-#.#...#...#...###...>.#
-#.#.#v#######v###.###v#
-#...#.>.#...>.>.#.###.#
-#####v#.#.###v#.#.###.#
-#.....#...#...#.#.#...#
-#.#########.###.#.#.###
-#...###...#...#...#.###
-###.###.#.###v#####v###
-#...#...#.#.>.>.#.>.###
-#.###.###.#.###.#.#v###
-#.....###...###...#...#
-#####################.#`;
-
-console.log("example:", solutions[0](parseInput(example), true));
