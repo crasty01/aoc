@@ -1,1 +1,0 @@
-export * from "cliffy/prompt/mod.ts";

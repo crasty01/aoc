@@ -1,8 +1,8 @@
 
-import { Select } from '/src/services/cli.ts';
-import { Table } from 'cliffy/table/mod.ts';
-import { colors } from 'cliffy/ansi/colors.ts';
-import { join as joinPath,  } from 'std/path/mod.ts';
+import { Select } from '@cliffy/prompt';
+import { Table } from '@cliffy/table';
+import { colors } from '@cliffy/ansi';
+import { join as joinPath,  } from '@std/path';
 
 const CWD = Deno.cwd();
 const DAYS_PATH = (year: string) => joinPath(CWD, year);

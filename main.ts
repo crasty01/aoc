@@ -5,8 +5,8 @@ import {
   getAllDaysInAYear,
 consoleClear,
 } from '/src/functions/print.ts';
-import { join as joinPath } from 'std/path/mod.ts';
-import { parse } from "std/flags/mod.ts";
+import { join as joinPath } from '@std/path';
+import { parseArgs } from "@std/cli";
 
 type Result = {
 	index: number;
@@ -31,7 +31,7 @@ const getSolutions = async <Input>(year: string, day: string, iteration?: number
 }
 
 
-const parsedArgs = parse(Deno.args);
+const parsedArgs = parseArgs(Deno.args);
 const watcher = parsedArgs.w ? Deno.watchFs(".") : [];
 const config = await whichDayToRun({
   year: String(parsedArgs.year).padStart(4, '0'),
