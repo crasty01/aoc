@@ -1,4 +1,3 @@
-import _Set from "https://deno.land/x/ramda@v0.27.2/source/internal/_Set.js";
 import { BroadcasterModule, ConjunctionModule, CounterModule, FlipFlopModule, ModuleSet, Pulse } from "./Module.ts";
 import { lcm } from "/src/functions/math.ts";
 
