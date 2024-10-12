@@ -1,8 +1,11 @@
-type Point = [number, number]
-type DoublePointLine = [Point, Point];
+type DoublePointLine = [number, number, number, number];
 type Hailstone = {
-  pos: [number, number, number];
-  vec: [number, number, number];
+	px: number,
+	py: number,
+	pz: number,
+	vx: number,
+	vy: number,
+	vz: number,
 };
 type Input = {
 	lines: Array<Hailstone>;
@@ -22,8 +25,12 @@ export const parseInput = (rawInut: string, min?: number, max?: number): Input =
 			const [vx, vy, vz] = _vel.split(", ");
 	
 			return {
-				pos: [+px, +py, +pz],
-				vec: [+vx, +vy, +vz],
+				px: parseInt(px),
+				py: parseInt(py),
+				pz: parseInt(pz),
+				vx: parseInt(vx),
+				vy: parseInt(vy),
+				vz: parseInt(vz),
 			};
 		}),
 		min,
@@ -31,103 +38,85 @@ export const parseInput = (rawInut: string, min?: number, max?: number): Input =
 	}
 };
 
-const simpleIntersectionFinder = (
-  lineA: DoublePointLine,
-  lineB: DoublePointLine,
+const getLinesIntersection = (
+	h1: Hailstone,
+	h2: Hailstone,
 ) => {
-	const denominator = (lineB[1][1] - lineB[0][1]) * (lineA[1][0] - lineA[0][0]) - (lineB[1][0] - lineB[0][0]) * (lineA[1][1] - lineA[0][1]);
-  // Check if the lines are parallel (denominator = 0)
-  if (denominator == 0) {
-    return null; // No intersection
+  const [x1, x2, y1, y2] = [h1.px, h1.px+100000000000000*h1.vx, h1.py, h1.py+100000000000000*h1.vy];
+  const [x3, x4, y3, y4] = [h2.px, h2.px+100000000000000*h2.vx, h2.py, h2.py+100000000000000*h2.vy];
+
+  const denominator = (x1-x2)*(y3-y4)-(y1-y2)*(x3-x4);
+  if (denominator === 0) {
+    return false;
   }
-  
-  // Calculate ua and ub
-  const ua = ((lineB[1][0] - lineB[0][0]) * (lineA[0][1] - lineB[0][1]) - (lineB[1][1] - lineB[0][1]) * (lineA[0][0] - lineB[0][0])) / denominator;
-  const ub = ((lineA[1][0] - lineA[0][0]) * (lineA[0][1] - lineB[0][1]) - (lineA[1][1] - lineA[0][1]) * (lineA[0][0] - lineB[0][0])) / denominator;
-  
-  // Calculate intersection point
-  const intersectionX = lineA[0][0] + ua * (lineA[1][0] - lineA[0][0]);
-  const intersectionY = lineA[0][1] + ua * (lineA[1][1] - lineA[0][1]);
-  
-  // Check if the intersection point is within the segments
-  const isInside = ua >= 0 && ua <= 1 && ub >= 0 && ub <= 1;
-  
-  // Determine the ternary position (-1, 0, 1)
-  const position = ua < 0 ? -1 : ua > 1 ? 1 : 0;
-  
-  // Return the result object
-  return {
-    x: intersectionX,
-    y: intersectionY,
-    isInside: isInside,
-    position: position,
-  };
-};
 
-const simpleLineLimiter = (
-  hailstone: Hailstone,
-  min: number,
-  max: number,
-): null | DoublePointLine => {
+  const x = ((x1*y2-y1*x2)*(x3-x4)-(x1-x2)*(x3*y4-y3*x4)) / denominator;
+  const y = ((x1*y2-y1*x2)*(y3-y4)-(y1-y2)*(x3*y4-y3*x4)) / denominator;
 
-	const pointA: Point = [hailstone.pos[0], hailstone.pos[1],]
-	const pointB: Point = [hailstone.pos[0] + hailstone.vec[0], hailstone.pos[1] + hailstone.vec[1]];
-	const line: DoublePointLine = [pointA, pointB];
+  return { x, y };
+}
 
-	const intersections: Array<ReturnType<typeof simpleIntersectionFinder>> = [];
-	intersections.push(simpleIntersectionFinder(line, [[min, Number.MAX_SAFE_INTEGER], [min, -Number.MAX_SAFE_INTEGER]]));
-	intersections.push(simpleIntersectionFinder(line, [[max, Number.MAX_SAFE_INTEGER], [max, -Number.MAX_SAFE_INTEGER]]));
-	intersections.push(simpleIntersectionFinder(line, [[Number.MAX_SAFE_INTEGER, min], [-Number.MAX_SAFE_INTEGER, min]]));
-	intersections.push(simpleIntersectionFinder(line, [[Number.MAX_SAFE_INTEGER, max], [-Number.MAX_SAFE_INTEGER, max]]));
+const det = (m: Array<Array<number>>): number => {
+  if (m.length === 0) return 1;
+  const [l, ...r] = m;
+  const result = l.map((n, i) => n * det(r.map(row => row.toSpliced(i, 1))));
+  return result.reduce((a, b, i) => (i % 2 ? a - b : a + b), 0);
+}
 
-	const filteredIntersections = intersections.filter((intersection) => {
-		if (!intersection) return false;
-		return intersection.x >= min && intersection.x <= max && intersection.y >= min && intersection.y <= max;
-	}).filter((e) => e !== null) as Array<Exclude<ReturnType<typeof simpleIntersectionFinder>, null>>;
-
-	if (filteredIntersections.length !== 2) return null;
-	return filteredIntersections.map((intersection) => {
-		if (intersection.position === 1) {
-			return [
-				intersection.x,
-				intersection.y,
-			];
-		}
-
-		return pointA;
-	}) as DoublePointLine;
-};
-
-solutions[0] = (input: Input, run = false): number => {
-  if (!run) return -1;
-
+solutions[0] = (input: Input): number => {
 	const min = input.min ?? 200000000000000;
 	const max = input.max ?? 400000000000000;
 
   let n = 0;
-  const limitedLines = input.lines.map((hailstone) =>
-    simpleLineLimiter(hailstone, min, max)
-  ).filter(e => e !== null) as Array<DoublePointLine>;
 
-  for (let i = 0; i < limitedLines.length; i++) {
-    for (let j = i + 1; j < limitedLines.length; j++) {
-      const res = simpleIntersectionFinder(limitedLines[i], limitedLines[j]);
-			if (res && res.isInside) n++;
+  for (let i = 0; i < input.lines.length; i++) {
+    for (let j = i + 1; j < input.lines.length; j++) {
+			const h1 = input.lines[i]
+			const h2 = input.lines[j]
+      const intersection = getLinesIntersection(h1, h2);
+			if (false
+				|| !intersection
+				|| intersection.x < min
+				|| intersection.x > max
+				|| intersection.y < min
+				|| intersection.y > max
+			) {
+        continue;
+      }
+
+      const h1Time = (intersection.x - h1.px) / h1.vx
+      const h2Time = (intersection.x - h2.px) / h2.vx;
+			
+			if (h1Time < 0 || h2Time < 0) {
+				continue;
+			}
+
+			n += 1;
     }
   }
 
   return n;
 };
 
-solutions[1] = (input: Input, run = false): number => {
-  if (!run) return -1;
-  return 0;
+// Cramer's rule solution
+// taken from: https://www.reddit.com/r/adventofcode/comments/18pnycy/2023_day_24_solutions/khlrstp/
+solutions[1] = (input: Input): number => {
+	const A: Array<Array<number>> = [];
+	const B: Array<number> = [];
+
+  for (let i = 1; i <= 3; i++) {
+		const h0 = input.lines[0];
+		const hn = input.lines[i];
+		A.push([h0.vy - hn.vy, hn.vx - h0.vx, 0, hn.py - h0.py, h0.px - hn.px, 0]);
+		B.push(h0.px * h0.vy - h0.py * h0.vx - hn.px * hn.vy + hn.py * hn.vx);
+		A.push([h0.vz - hn.vz, 0, hn.vx - h0.vx, hn.pz - h0.pz, 0, h0.px - hn.px]);
+		B.push(h0.px * h0.vz - h0.pz * h0.vx - hn.px * hn.vz + hn.pz * hn.vx);
+	}
+
+	console.log(A, B)
+
+  const detA = det(A);
+  const [pxr, pyr, pzr] = A.map((_, i) => det(A.map((r, j) => r.toSpliced(i, 1, B[j]))) / detA);
+
+  return pxr + pyr + pzr;
 };
-
-const example = `19, 13, 30 @ -2,  1, -2
-18, 19, 22 @ -1, -1, -2
-20, 25, 34 @ -2, -2, -4
-12, 31, 28 @ -1, -2, -1
-20, 19, 15 @  1, -5, -3`;
-
-console.log(solutions[0](parseInput(example, 7, 27), true));
