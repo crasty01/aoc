@@ -2,7 +2,7 @@ type Input = any;
 
 export const solutions: Array<(input: Input, run?: boolean) => number | string> = [];
 export const parseInput = (rawInut: string): Input => {
-  return rawInut;
+  return rawInut.split(/\r?\n/g);
 }
 
 solutions[0] = (input: Input, run = false): number =>  {
