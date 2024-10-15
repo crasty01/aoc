@@ -27,7 +27,7 @@ export const getAllDaysInAYear = async (year: string) => {
   const days: Array<string> = [];
   const dir = DAYS_PATH(year);
   for await (const dirEntry of Deno.readDir(dir)) {
-    days.push(dirEntry.name);
+    if (dirEntry.isDirectory) days.push(dirEntry.name);
   }
   return days.sort((a, b) => a.localeCompare(b));;
 }

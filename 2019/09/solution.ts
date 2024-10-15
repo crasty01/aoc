@@ -14,7 +14,7 @@ solutions[0] = (memory: Input, run = false): number =>  {
 }
 
 solutions[1] = (memory: Input, run = false): number =>  {
-  const result = [...intcode({ inputs: [5], memory })];
+  const result = [...intcode({ inputs: [2], memory })];
 
 	return result[result.length - 1];
 }
