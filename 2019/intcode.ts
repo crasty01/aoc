@@ -1,17 +1,18 @@
 type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>
-type Ctx = {
+export type Context = {
 	inputs: Array<number>;
 	memory: Array<number>;
 	pointer: number;
 	relative: number;
 	log: boolean;
 }
+export type PartialContext = PartialBy<Context, 'pointer' | 'relative' | 'log'>
 
-export function* intcode (_ctx: PartialBy<Ctx, 'pointer' | 'relative' | 'log'>): Generator<number, undefined> {
+export function* intcode (_ctx: PartialContext): Generator<number, undefined> {
 	if (_ctx.pointer === undefined) _ctx.pointer = 0;
 	if (_ctx.relative === undefined) _ctx.relative = 0;
 	if (_ctx.log === undefined) _ctx.log = false;
-	const ctx = _ctx as Ctx;
+	const ctx = _ctx as Context;
 
 	// console.log(ctx.memory.join(','));
 	// console.log('----------');
