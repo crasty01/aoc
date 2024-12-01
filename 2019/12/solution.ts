@@ -67,6 +67,41 @@ class Moon {
 	}
 }
 
+const findCycle = (positions: Array<number>) => {
+	const velocities = Array.from({ length: positions.length }, () => 0);
+	let steps = 0;
+
+	do {
+		for (let a = 0; a < positions.length; a++) {
+			for (let b = a + 1; b < positions.length; b++) {
+				const sign = Math.sign(positions[b] - positions[a]);
+				velocities[a] += sign;
+				velocities[b] -= sign;
+			}
+		}
+
+		for (let i = 0; i < positions.length; i++) {
+			positions[i] += velocities[i];
+		}
+
+		steps += 1;
+	} while (!velocities.every((e) => e === 0));
+
+	return steps * 2;
+}
+
+const gcd = (_x: number, _y: number) => {
+	let x = _x;
+	let y = _y;
+	while (y !== 0) {
+		[x, y] = [y, x % y];
+	}
+	return x;
+};
+
+const lcm = (x: number, y: number) => (x * y) / gcd(x, y);
+const lcm3 = (x: number, y: number, z: number) => lcm(x, lcm(y, z));
+
 solutions[0] = (input: Input, run = false): number =>  {
 	const moons = input.map(({x, y, z}) => new Moon(x, y, z));
 	for (let i = 0; i < 1000; i++) {
@@ -93,13 +128,9 @@ solutions[0] = (input: Input, run = false): number =>  {
 }
 
 solutions[1] = (input: Input, run = false): number =>  {
-  if (!run) return -1;
-  return 0;
+	const x = findCycle(input.map(({ x }) => x));
+	const y = findCycle(input.map(({ y }) => y));
+	const z = findCycle(input.map(({ z }) => z));
+
+	return lcm3(x, y, z);
 }
-
-// const example = `<x=-8, y=-10, z=0>
-// <x=5, y=5, z=10>
-// <x=2, y=-7, z=3>
-// <x=9, y=-8, z=-3>`;
-
-// console.log(solutions[0](parseInput(example), true));

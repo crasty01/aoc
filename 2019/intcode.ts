@@ -6,7 +6,7 @@ export type Context = {
 	relative: number;
 	log: boolean;
 }
-export type PartialContext = PartialBy<Context, 'pointer' | 'relative' | 'log'>
+export type PartialContext = PartialBy<Context, 'pointer' | 'relative' | 'log'>;
 
 export function* intcode (_ctx: PartialContext): Generator<number, undefined> {
 	if (_ctx.pointer === undefined) _ctx.pointer = 0;
