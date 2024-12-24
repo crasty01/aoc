@@ -5,6 +5,7 @@
     "@cliffy/ansi": "jsr:@cliffy/ansi@^1.0.0-rc.4",
     "@cliffy/prompt": "jsr:@cliffy/prompt@^1.0.0-rc.4",
     "@cliffy/table": "jsr:@cliffy/table@^1.0.0-rc.4",
+    "@elf/combinatorics": "jsr:@elf/combinatorics@^1.0.14",
     "@std/cli": "jsr:@std/cli@^0.224.6",
     "@std/flags": "jsr:@std/flags@^0.224.0",
     "@std/path": "jsr:@std/path@^0.225.2",
@@ -16,5 +17,8 @@
   },
 	"tasks": {
 		"start": "deno run --allow-read main.ts"
-	}
+	},
+	"compilerOptions": {
+    "lib": ["deno.worker"]
+  }
 }

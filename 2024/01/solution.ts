@@ -34,12 +34,3 @@ solutions[1] = ([a, b]: Input, run = false): number =>  {
 
   return sum;
 }
-
-const example = `3   4
-4   3
-2   5
-1   3
-3   9
-3   3`;
-
-console.log(solutions[1](parseInput(example), true));
