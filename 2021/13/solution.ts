@@ -34,7 +34,7 @@ export const parseInput = (rawInut: string): Input => {
   }
 }
 
-solutions[0] = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string => {
   let dots: Set<string> = new Set()
   for (let i = 0; i < input.dots.length; i++) {
     dots.add(`${input.dots[i].x}-${input.dots[i].y}`)
@@ -57,7 +57,7 @@ solutions[0] = (input: Input): number | string =>  {
   return dots.size;
 }
 
-solutions[1] = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string => {
   let dots: Set<string> = new Set()
   for (let i = 0; i < input.dots.length; i++) {
     dots.add(`${input.dots[i].x}-${input.dots[i].y}`)

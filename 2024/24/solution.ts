@@ -39,7 +39,7 @@ const gate = (a: number, b: number, op: string) => {
 	}
 }
 
-solutions[0] = ({ gates, values }: Input, run = false): number | string =>  {
+solutions[0] = ({ gates, values }: Input, run = false): number | string => {
 	const queue = [...gates];
 	const res = [];
 
@@ -61,7 +61,7 @@ solutions[0] = ({ gates, values }: Input, run = false): number | string =>  {
   return parseInt(res.reverse().join(''), 2);
 }
 
-solutions[1] = (input: Input, run = false): number =>  {
+solutions[1] = (input: Input, run = false): number => {
   if (!run) return -1;
   return 0;
 }

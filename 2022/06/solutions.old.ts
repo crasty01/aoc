@@ -1,6 +1,6 @@
 type Input = string;
 
-export const simpleSolution = (input: Input, CHARS: number): number | string =>  {
+export const simpleSolution = (input: Input, CHARS: number): number | string => {
   const unique = (input: string): boolean => input.length === new Set([...input]).size;
 
   let last = input.slice(0, CHARS - 1);
@@ -11,7 +11,7 @@ export const simpleSolution = (input: Input, CHARS: number): number | string => 
   return -1;
 }
 
-export const fasterSolution = (input: Input, CHARS: number): number | string =>  {
+export const fasterSolution = (input: Input, CHARS: number): number | string => {
   for (let i = CHARS - 1; i < input.length; i++) {
     const set = new Set();
     for (let j = 0; j < CHARS; j++) {

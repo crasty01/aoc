@@ -16,7 +16,7 @@ const getDirection = (a: Cell<CellType>, b: Cell<CellType>) => {
 	return (b.x - a.x) * 3 + (b.y - a.y);
 }
 
-const findShortestPath = (grid: Input): Array<Cell<CellType>> | undefined =>  {
+const findShortestPath = (grid: Input): Array<Cell<CellType>> | undefined => {
 	const start = grid.findCell(cell => cell.type === 'S')!;
 	const end = grid.findCell(cell => cell.type === 'E')!;
 	start.dist = 0;
@@ -64,7 +64,7 @@ solutions[0] = (input: Input, run = false): number => {
 	return path[0].dist;
 }
 
-solutions[1] = (input: Input, run = false): number =>  {
+solutions[1] = (input: Input, run = false): number => {
   if (!run) return -1;
   return 0;
 }

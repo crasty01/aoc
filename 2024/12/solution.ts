@@ -11,7 +11,7 @@ export const parseInput = (rawInut: string): Input => {
   return new Grid<CellType>(w, h, (x, y) => rawInut[y * (w + c) + x]);
 }
 
-solutions[0] = (grid: Input, run = false): number =>  {
+solutions[0] = (grid: Input, run = false): number => {
 	const visited = new Set<number>();
 	
 	let sum = 0;
@@ -83,7 +83,7 @@ const createEdgeCoutner = (grid: Input, cells: Array<Cell<CellType>>): number =>
 	return edges;
 };
 
-solutions[1] = (grid: Input, run = false): number =>  {
+solutions[1] = (grid: Input, run = false): number => {
 	const visited = new Set<number>();
 	const edgeCounter = createEdgeCoutner.bind(null, grid);
 	

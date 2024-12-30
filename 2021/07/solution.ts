@@ -15,7 +15,7 @@ export const parseInput = (rawInut: string): Input => {
   return rawInut.split(',').map(Number);
 }
 
-solutions[0] = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string => {
   const median = calculateMedian(input);
   let fuelCost = 0;
   for (const crab of input) {
@@ -24,7 +24,7 @@ solutions[0] = (input: Input): number | string =>  {
   return fuelCost;
 }
 
-solutions[1] = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string => {
   const [floor, ceil] = getPos(input);
   const fuelCost = {
     floor: 0,

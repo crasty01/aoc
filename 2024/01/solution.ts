@@ -9,7 +9,7 @@ export const parseInput = (rawInut: string): Input => {
 	return [a, b]
 }
 
-solutions[0] = ([a, b]: Input, run = false): number =>  {
+solutions[0] = ([a, b]: Input, run = false): number => {
 	const sortedA = a.toSorted((x, y) => x - y);
 	const sortedB = b.toSorted((x, y) => x - y);
 
@@ -21,7 +21,7 @@ solutions[0] = ([a, b]: Input, run = false): number =>  {
   return sum;
 }
 
-solutions[1] = ([a, b]: Input, run = false): number =>  {
+solutions[1] = ([a, b]: Input, run = false): number => {
 	const bMap = new Map<number, number>();
 	for (const e of b) {
 		bMap.set(e, (bMap.get(e) ?? 0) + 1)

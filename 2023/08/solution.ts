@@ -21,7 +21,7 @@ export const parseInput = (rawInut: string): Input => {
 	}
 }
 
-solutions[0] = (input: Input): number =>  {
+solutions[0] = (input: Input): number => {
 	let currentNode = 'AAA';
 	let steps = 0;
 	const instructions = [...input.instructions].map(e => Number(e === 'R'));
@@ -38,7 +38,7 @@ solutions[0] = (input: Input): number =>  {
   return steps;
 }
 
-solutions[1] = (input: Input): number =>  {
+solutions[1] = (input: Input): number => {
 	const instructions = [...input.instructions].map(e => Number(e === 'R'));
 	const entries = [...input.nodes.entries()];
 	const starts = entries.map(([key]) => key).filter((node) => {

@@ -8,7 +8,7 @@ export const parseInput = (rawInut: string): Input => {
   return rawInut.split('\r\n').map(e => e.split('').map(Number));
 }
 
-solutions[0] = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string => {
   const rows = input.length;
   const cols = input[0].length;
   const grid = new Grid(rows, cols, (x, y) => input[y][x])
@@ -52,7 +52,7 @@ solutions[0] = (input: Input): number | string =>  {
   return sum;
 }
 
-solutions[1] = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string => {
   const rows_og = input.length;
   const cols_og = input[0].length;
 

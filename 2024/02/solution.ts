@@ -19,7 +19,7 @@ const isValid = (line: Array<number>) => {
 	return true;
 }
 
-solutions[0] = (input: Input, run = false): number =>  {
+solutions[0] = (input: Input, run = false): number => {
 	let safe = 0;
 
 	for (const line of input) {
@@ -29,7 +29,7 @@ solutions[0] = (input: Input, run = false): number =>  {
   return safe;
 }
 
-solutions[1] = (input: Input, run = false): number =>  {
+solutions[1] = (input: Input, run = false): number => {
   let safe = 0;
 
 	for (const line of input) {

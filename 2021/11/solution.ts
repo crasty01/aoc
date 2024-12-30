@@ -24,7 +24,7 @@ export const parseInput = (rawInut: string): Input => {
   return rawInut.split('\r\n').map(e => e.split('').map(Number));
 }
 
-solutions[0] = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string => {
   const g = new Grid(10, 10, (x, y) => input[y][x]);
   let n = 0;
   for (let i = 0; i < 100; i++) {
@@ -33,7 +33,7 @@ solutions[0] = (input: Input): number | string =>  {
   return n;
 }
 
-solutions[1] = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string => {
   const g = new Grid(10, 10, (x, y) => input[y][x]);
   let i = 0, allFlashed = false;
   do {

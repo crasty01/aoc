@@ -115,7 +115,7 @@ export const parseInput = (rawInut: string): Input => {
 	return graph;
 }
 
-solutions[0] = (input: Input): number =>  {
+solutions[0] = (input: Input): number => {
 	const [s, ...others] = input.keys();
 	for (const t of others) {
 		const result = input.minCut(s, t)
@@ -128,7 +128,7 @@ solutions[0] = (input: Input): number =>  {
   return -1;
 }
 
-solutions[1] = (input: Input, run = false): number =>  {
+solutions[1] = (input: Input, run = false): number => {
   if (!run) return -1;
 
 	const [s, ...others] = input.keys();

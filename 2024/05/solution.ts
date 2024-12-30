@@ -49,7 +49,7 @@ const getMiddlePageValue = (rules: Rules, update: Update): [boolean, number] => 
 	return [wasBroken, update[update.length >> 1]];
 }
 
-solutions[0] = (input: Input, run = false): number =>  {
+solutions[0] = (input: Input, run = false): number => {
 	let sum = 0;
 
 	for (const update of input.updates) {
@@ -60,7 +60,7 @@ solutions[0] = (input: Input, run = false): number =>  {
   return sum;
 }
 
-solutions[1] = (input: Input, run = false): number =>  {
+solutions[1] = (input: Input, run = false): number => {
 	let sum = 0;
 
 	for (const update of input.updates) {

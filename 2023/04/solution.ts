@@ -18,7 +18,7 @@ export const parseInput = (rawInut: string): Input => {
 	});
 }
 
-solutions[0] = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string => {
 	let points = 0;
 	
 	for (const matched of input) {
@@ -28,7 +28,7 @@ solutions[0] = (input: Input): number | string =>  {
 	return points;
 }
 
-solutions[1] = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string => {
 	const counted = input.map(() => 1);
 	let points = input.length;
 	

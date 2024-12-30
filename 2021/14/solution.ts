@@ -58,10 +58,10 @@ export const parseInput = (rawInut: string): Input => {
   }
 }
 
-solutions[0] = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string => {
   return solution(input, 10, (a => a ? 0 : -1));
 }
 
-solutions[1] = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string => {
   return solution(input, 40, (a => a ? 1 : -1));
 }

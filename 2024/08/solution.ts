@@ -11,7 +11,7 @@ export const parseInput = (rawInut: string): Input => {
   return new Grid<CellType>(w, h, (x, y) => rawInut[y * (w + c) + x] as CellType);
 }
 
-solutions[0] = (grid: Input, run = false): number =>  {
+solutions[0] = (grid: Input, run = false): number => {
 	const antinodes = new Set<number>();
 	const antennas = new Map<string, Array<Cell<CellType>>>();
 
@@ -37,7 +37,7 @@ solutions[0] = (grid: Input, run = false): number =>  {
   return antinodes.size;
 }
 
-solutions[1] = (grid: Input, run = false): number =>  {
+solutions[1] = (grid: Input, run = false): number => {
 	const antinodes = new Set<number>();
 	const antennas = new Map<string, Array<Cell<CellType>>>();
 

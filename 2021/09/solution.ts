@@ -5,7 +5,7 @@ export const parseInput = (rawInut: string): Input => {
   return rawInut.split('\r\n').map(e => e.split('').map(Number));
 }
 
-solutions[0] = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string => {
   const height: number = input.length;
   const width: number = input[0].length;
 
@@ -31,6 +31,6 @@ solutions[0] = (input: Input): number | string =>  {
   return sum
 }
 
-solutions[1] = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string => {
   return 0;
 }

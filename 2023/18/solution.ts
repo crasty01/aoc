@@ -53,14 +53,14 @@ const calculteArea = (corners: Array<[number, number]>) => {
 }
 
 
-solutions[0] = (input: Input): number =>  {
+solutions[0] = (input: Input): number => {
 	const instructions: Array<Line> = input.map(e => ({ dir: e.dir, len: e.len }));
 	const [corners, b] = createCorners(instructions);
 	const A = calculteArea(corners);
 	return A - (b / 2) + b + 1;
 }
 
-solutions[1] = (input: Input): number =>  {
+solutions[1] = (input: Input): number => {
 	const dirs = 'RDLU';
 	const instructions: Array<Line> = input.map(e => ({
 		dir: dirs[parseInt(e.col.at(-1)!)] as Dir,

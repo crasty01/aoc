@@ -27,10 +27,10 @@ const binarySolution = (input: Input, CHARS: number): number | string => {
   return -1;
 }
 
-solutions[0] = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string => {
   return binarySolution(input, 4)
 }
 
-solutions[1] = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string => {
   return binarySolution(input, 14)
 }

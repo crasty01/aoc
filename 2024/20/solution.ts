@@ -11,7 +11,7 @@ export const parseInput = (rawInut: string): Input => {
 	return new Grid<CellType>(w, h, (x, y) => rawInut[y * (w + c) + x] as CellType);
 }
 
-solutions[0] = (grid: Input, run = false): number =>  {
+solutions[0] = (grid: Input, run = false): number => {
 	const start = grid.findCell(cell => cell.type === 'S')!;
 	const end = grid.findCell(cell => cell.type === 'E')!;
 	const skips = new Map<number, number>();
@@ -46,7 +46,7 @@ solutions[0] = (grid: Input, run = false): number =>  {
   return sum;
 }
 
-solutions[1] = (input: Input, run = false): number =>  {
+solutions[1] = (input: Input, run = false): number => {
   if (!run) return -1;
   return 0;
 }

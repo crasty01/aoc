@@ -17,7 +17,7 @@ export const parseInput = (rawInut: string): Input => {
 	}
 }
 
-solutions[0] = (input: Input): number =>  {
+solutions[0] = (input: Input): number => {
 	let acc = 1;
 
 	for (let i = 0; i < input.times.length; i++) {
@@ -36,7 +36,7 @@ solutions[0] = (input: Input): number =>  {
   return acc;
 }
 
-solutions[1] = (input: Input): number =>  {
+solutions[1] = (input: Input): number => {
 	const time = parseInt(input.times.join(''));
 	const distance =  parseInt(input.distances.join(''));
 

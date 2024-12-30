@@ -164,7 +164,7 @@ class Computer {
 	//#endregion operations
 }
 
-solutions[0] = ({ program, registers }: Input, run = false): number | string =>  {
+solutions[0] = ({ program, registers }: Input, run = false): number | string => {
 	const computer = new Computer(program, registers, 0);
 
 	const output = computer.run(
@@ -176,7 +176,7 @@ solutions[0] = ({ program, registers }: Input, run = false): number | string => 
   return (output + '').split('').join(',');
 }
 
-solutions[1] = ({ program, registers }: Input, run = false): number =>  {
+solutions[1] = ({ program, registers }: Input, run = false): number => {
 	const control = parseInt(program.join(''), 10);
 	
 	const computer = new Computer(program, registers, 0);

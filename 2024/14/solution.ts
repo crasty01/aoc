@@ -56,7 +56,7 @@ const createDisplay = (width: number, height: number) => (points: Map<string, nu
 	console.log(grid);
 }
 
-solutions[1] = (input: Input, run = false): number =>  {
+solutions[1] = (input: Input, run = false): number => {
 	const width = 101;
 	const height = 103;
 	// const disaply = createDisplay(width, height);

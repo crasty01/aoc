@@ -7,7 +7,7 @@ export const parseInput = (rawInut: string): Input => {
 	});
 }
 
-solutions[0] = (input: Input): number =>  {
+solutions[0] = (input: Input): number => {
 	let sum = 0;
 	for (const line of input) {
 		const differences: Array<Array<number>> = [[...line]];
@@ -37,7 +37,7 @@ solutions[0] = (input: Input): number =>  {
   return sum;
 }
 
-solutions[1] = (input: Input): number =>  {
+solutions[1] = (input: Input): number => {
 	let sum = 0;
 	for (const line of input) {
 		const differences: Array<Array<number>> = [[...line]];

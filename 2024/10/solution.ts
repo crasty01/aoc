@@ -42,7 +42,7 @@ const createTrailsGetter = (grid: Grid<CellType>, trailHead: Cell<CellType>) => 
 	return trails;
 }
 
-solutions[0] = (grid: Input, run = false): number =>  {
+solutions[0] = (grid: Input, run = false): number => {
 	const trailsGetter = createTrailsGetter.bind(null, grid);
 	const trailHeads = grid.filterCells(e => e.type === 0);
 
@@ -61,7 +61,7 @@ solutions[0] = (grid: Input, run = false): number =>  {
   return trailCounter;
 }
 
-solutions[1] = (grid: Input, run = false): number =>  {
+solutions[1] = (grid: Input, run = false): number => {
 	const trailsGetter = createTrailsGetter.bind(null, grid);
 	const trailHeads = grid.filterCells(e => e.type === 0);
 

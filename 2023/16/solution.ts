@@ -221,7 +221,7 @@ const solveForDirection = (
   return usedTiles.size;
 }
 
-solutions[0] = (input: Input): number =>  {
+solutions[0] = (input: Input): number => {
   return solveForDirection(input, [{
 		x: 0,
 		y: 0,
@@ -229,7 +229,7 @@ solutions[0] = (input: Input): number =>  {
 	}]);
 }
 
-solutions[1] = (input: Input): number =>  {
+solutions[1] = (input: Input): number => {
 	let max = 0;
 
 	for (let i = 0; i < input.length; i++) {

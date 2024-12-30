@@ -5,7 +5,7 @@ export const parseInput = (rawInut: string): Input => {
   return rawInut.trim();
 }
 
-solutions[0] = (input: Input, run = false): number =>  {
+solutions[0] = (input: Input, run = false): number => {
 	const disk: Array<number | undefined> = [];
 	for (let i = 0; i < input.length; i++) {
 		const n = +input[i];
@@ -38,7 +38,7 @@ solutions[0] = (input: Input, run = false): number =>  {
 	return checksum;
 }
 
-solutions[1] = (input: Input, run = false): number =>  {
+solutions[1] = (input: Input, run = false): number => {
   if (!run) return -1;
   return 0;
 }

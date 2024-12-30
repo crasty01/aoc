@@ -39,7 +39,7 @@ const getHandValueBasic = (hand: string): number => {
 	}
 }
 
-solutions[0] = (input: Input): number =>  {
+solutions[0] = (input: Input): number => {
 	const cardValues = 'AKQJT98765432';
 	let sum = 0;
 
@@ -107,7 +107,7 @@ const getHandValueAdvanced = (hand: string): number => {
 	}
 }
 
-solutions[1] = (input: Input): number =>  {
+solutions[1] = (input: Input): number => {
 	const cardValues = 'AKQT98765432J';
 	let sum = 0;
 

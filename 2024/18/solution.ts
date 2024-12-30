@@ -8,7 +8,7 @@ export const parseInput = (rawInut: string): Input => {
 	return rawInut.split(/\r?\n/g).map(line => line.split(',').map(e => parseInt(e, 10)) as [number, number]);
 }
 
-const createFindShortestPath = (w: number, h: number, input: Input) => (MAX_TIME: number): Array<Cell<CellType>> | undefined =>  {
+const createFindShortestPath = (w: number, h: number, input: Input) => (MAX_TIME: number): Array<Cell<CellType>> | undefined => {
 	const grid = new Grid<CellType>(w, h, () => Infinity);
 	const start = grid.cell(0, 0)!;
 	const end = grid.cell(w - 1, h - 1)!;

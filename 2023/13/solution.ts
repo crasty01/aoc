@@ -50,7 +50,7 @@ const compareVertically = (image: Image, exactNumberOfMistakes = 0): number => {
 	return 0;
 }
 
-solutions[0] = (input: Input): number =>  {
+solutions[0] = (input: Input): number => {
 	let sum = 0;
 
 	for (const image of input) {
@@ -61,7 +61,7 @@ solutions[0] = (input: Input): number =>  {
   return sum;
 }
 
-solutions[1] = (input: Input): number =>  {
+solutions[1] = (input: Input): number => {
 	let sum = 0;
 
 	for (const image of input) {

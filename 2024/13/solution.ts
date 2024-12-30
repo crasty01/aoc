@@ -24,7 +24,7 @@ export const parseInput = (rawInut: string): Input => {
 	});
 }
 
-solutions[0] = (input: Input, run = false): number =>  {
+solutions[0] = (input: Input, run = false): number => {
 	let sum = 0;
 	for (const {a, b, p} of input) {
 		const determinant = a[0] * b[1] - b[0] * a[1];
@@ -42,7 +42,7 @@ solutions[0] = (input: Input, run = false): number =>  {
   return sum;
 }
 
-solutions[1] = (input: Input, run = false): number =>  {
+solutions[1] = (input: Input, run = false): number => {
 	let sum = 0;
 	for (const {a, b, p} of input) {
 		const determinant = a[0] * b[1] - b[0] * a[1];

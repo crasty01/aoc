@@ -43,12 +43,12 @@ const getSum = (input: Array<number>): number => {
   return input[a] + input[b] + input[c];
 }
 
-solutions[0] = (input: Input): number =>  {
+solutions[0] = (input: Input): number => {
   const mixed = mix(input);
   return getSum(mixed);
 }
 
-solutions[1] = (input: Input, run = false): number =>  {
+solutions[1] = (input: Input, run = false): number => {
   if (!run) return -1;
   let mixed = input.map((value) => value * 811589153);
   // console.log(mixed);

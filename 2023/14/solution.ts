@@ -5,7 +5,7 @@ export const parseInput = (rawInut: string): Input => {
   return rawInut.split(/\r?\n/g).map(line => line.split(''));
 }
 
-solutions[0] = (input: Input): number =>  {
+solutions[0] = (input: Input): number => {
 	let sum = 0;
 	const rows = Array.from({ length: input.length }, () => 0);
 
@@ -122,7 +122,7 @@ const cycle = (input: Input): Input => {
 	return input;
 }
 
-solutions[1] = (_input: Input): number =>  {
+solutions[1] = (_input: Input): number => {
 	const totalCycles = 1_000_000_000;
 	const cache = new Map<string, number>();
 

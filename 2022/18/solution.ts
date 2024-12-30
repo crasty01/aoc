@@ -12,7 +12,7 @@ const getPosition = (pos: string) => {
   return [parseInt(x, 10), parseInt(y, 10), parseInt(z, 10)];
 }
 
-const getSurfaceArea = (cubes: Input): number =>  {
+const getSurfaceArea = (cubes: Input): number => {
   let surfaceArea = 0;
 
   for (const key of cubes) {
@@ -60,7 +60,7 @@ const findExtremes = (cubes: Input): Extremes => {
   return extremes;
 }
 
-const getSurfaceAreaWithoutAirPockets = (cubes: Input): number =>  {
+const getSurfaceAreaWithoutAirPockets = (cubes: Input): number => {
   const extremes = findExtremes(cubes);
   const queue = [[extremes.x.min, extremes.y.min, extremes.z.min]];
   const air = new Set<string>(queue.map(([x, y, z]) => `${x},${y},${z}`));
@@ -99,10 +99,10 @@ const getSurfaceAreaWithoutAirPockets = (cubes: Input): number =>  {
   return getSurfaceArea(air) - surfaceArea;
 }
 
-solutions[0] = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string => {
   return getSurfaceArea(input);
 }
 
-solutions[1] = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string => {
   return getSurfaceAreaWithoutAirPockets(input);
 }

@@ -30,7 +30,7 @@ const createPatternChecker = (designs: Array<string>, memo: Map<string, number>)
 	return patternChecker;
 }
 
-solutions[0] = ({ designs, patterns }: Input, run = false): number =>  {
+solutions[0] = ({ designs, patterns }: Input, run = false): number => {
 	const memo = new Map<string, number>([["", 1]]);
 	const patternChecker = createPatternChecker(designs, memo);
 
@@ -42,7 +42,7 @@ solutions[0] = ({ designs, patterns }: Input, run = false): number =>  {
   return possible;
 }
 
-solutions[1] = ({ designs, patterns }: Input, run = false): number =>  {
+solutions[1] = ({ designs, patterns }: Input, run = false): number => {
 	const memo = new Map<string, number>([["", 1]]);
 	const patternChecker = createPatternChecker(designs, memo);
 

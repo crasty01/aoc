@@ -58,7 +58,7 @@ export const parseInput = (rawInut: string): Input => {
   });
 }
 
-const solution = (monkeys: Input, ROUNDS: number, lowerNumber: (value: bigint) => bigint): number | string =>  {
+const solution = (monkeys: Input, ROUNDS: number, lowerNumber: (value: bigint) => bigint): number | string => {
   for (let round = 0; round < ROUNDS; round++) {
     for (const monkey of monkeys) {
       while (monkey.items.length > 0) {
@@ -76,12 +76,12 @@ const solution = (monkeys: Input, ROUNDS: number, lowerNumber: (value: bigint) =
   return monkey1.inspected * monkey2.inspected;
 }
 
-solutions[0] = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string => {
   const lowerNumber = (value: bigint): bigint => value / 3n;
   return solution(input, 20, lowerNumber);
 }
 
-solutions[1] = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string => {
   const lazyCommonDivisor = input.reduce((acc, monkey) => acc * monkey.divisor, 1n);
   const lowerNumber = (value: bigint): bigint => value % lazyCommonDivisor;
   return solution(input, 10000, lowerNumber);

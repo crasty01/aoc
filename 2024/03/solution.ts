@@ -5,7 +5,7 @@ export const parseInput = (rawInut: string): Input => {
   return rawInut;
 }
 
-solutions[0] = (input: Input, run = false): number =>  {
+solutions[0] = (input: Input, run = false): number => {
 	const regex = /mul\((?<a>-?\d{1,3}),(?<b>-?\d{1,3})\)/;
 	const matches = input.match(new RegExp(regex, 'g'))!;
 
@@ -18,7 +18,7 @@ solutions[0] = (input: Input, run = false): number =>  {
   return sum;
 }
 
-solutions[1] = (input: Input, run = false): number =>  {
+solutions[1] = (input: Input, run = false): number => {
 	const regex = /(?<type>(mul)|(do)|(don\'t))\(((?<a>-?\d{1,3}),(?<b>-?\d{1,3}))?\)/;
 	const matches = input.match(new RegExp(regex, 'g'))!;
 

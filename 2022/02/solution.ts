@@ -5,7 +5,7 @@ export const parseInput = (rawInut: string): Input => {
   return rawInut.split('\r\n').map(e => e.split(' ').join(''));
 }
 
-solutions[0] = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string => {
   let score = 0;
   const getScore = new Map([
     ['AX', 3 + 1],
@@ -28,7 +28,7 @@ solutions[0] = (input: Input): number | string =>  {
   return score;
 }
 
-solutions[1] = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string => {
   let score = 0;
   const getScore = new Map([
     ['AX', 0 + 3],

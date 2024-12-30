@@ -48,7 +48,7 @@ const compare = (a: Item, b: Item): -1 | 0 | 1 => {
 }
 
 
-solutions[0] = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string => {
   let numberOfPairsInRightOrder = 0;
 
   for (let index = 0; index < input.length; index++) {
@@ -61,7 +61,7 @@ solutions[0] = (input: Input): number | string =>  {
   return numberOfPairsInRightOrder;
 }
 
-solutions[1] = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string => {
   const dividerPackets = [[[2]], [[6]]];
   const list: Array<Item> = [...dividerPackets];
   for (let index = 0; index < input.length; index++) {

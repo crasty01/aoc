@@ -48,7 +48,7 @@ const createEquationValidator = (length: number, operations: Array<OperationSymb
 	}
 }
 
-solutions[0] = ({ length, lines }: Input, run = false): number =>  {
+solutions[0] = ({ length, lines }: Input, run = false): number => {
 	const isEquationsValid = createEquationValidator(length, ['*', '+']);
 
 	let sum = 0;
@@ -60,7 +60,7 @@ solutions[0] = ({ length, lines }: Input, run = false): number =>  {
   return sum;
 }
 
-solutions[1] = ({ length, lines }: Input, run = false): number =>  {
+solutions[1] = ({ length, lines }: Input, run = false): number => {
 	const isEquationsValid = createEquationValidator(length, ['*', '+', '||']);
 
 	let sum = 0;

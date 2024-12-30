@@ -74,7 +74,7 @@ const createLoopChecker = (grid: Input, _guard: Guard): number => {
 	return 0;
 }
 
-solutions[0] = (grid: Input, run = false): number =>  {
+solutions[0] = (grid: Input, run = false): number => {
 	const guardCell = grid.findCell(cell => (false || cell.type === '<' || cell.type === '>' || cell.type === 'v' || cell.type === '^'));
 	if (guardCell === undefined) throw new Error("NO GUARD FOUND");
 
@@ -95,7 +95,7 @@ solutions[0] = (grid: Input, run = false): number =>  {
   return grid.filterCells(cell => cell.type === 'X').length;
 }
 
-solutions[1] = (grid: Input, run = false): number =>  {
+solutions[1] = (grid: Input, run = false): number => {
 	// if (!run) return 0;
 	const guardCell = grid.findCell(cell => (false || cell.type === '<' || cell.type === '>' || cell.type === 'v' || cell.type === '^'));
 	if (guardCell === undefined) throw new Error("NO GUARD FOUND");

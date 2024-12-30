@@ -42,7 +42,7 @@ export const parseInput = (rawInut: string): Input => {
 	return moduleSet;
 }
 
-solutions[0] = (input: Input): number =>  {
+solutions[0] = (input: Input): number => {
 	let iter = 0;
 	let high = 0;
 	let low = 0;
@@ -57,7 +57,7 @@ solutions[0] = (input: Input): number =>  {
   return low * high;
 }
 
-solutions[1] = (input: Input): number =>  {
+solutions[1] = (input: Input): number => {
 	input.addModule(new CounterModule('rx'));
 
 	const modules = [...input.getModules().values()];

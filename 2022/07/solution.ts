@@ -74,7 +74,7 @@ const solution = (input: Input): Tree => {
   return root;
 }
 
-solutions[0] = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string => {
   const MAX = 100_000;
 
   const root = solution(input);
@@ -85,7 +85,7 @@ solutions[0] = (input: Input): number | string =>  {
   return sumOfFilteredDirsSizes;
 }
 
-solutions[1] = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string => {
   const TOTAL = 70_000_000;
   const NEEDED = 30_000_000;
 

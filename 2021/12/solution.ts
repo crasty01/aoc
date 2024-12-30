@@ -24,14 +24,14 @@ export const parseInput = (rawInut: string): Input => {
   return caves;
 }
 
-solutions[0] = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string => {
   return step(
     input,
     (e, mem) => !mem.includes(e) || e.toUpperCase() === e
   ).length;
 }
 
-solutions[1] = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string => {
   return step(
     input,
     (e, mem) => {

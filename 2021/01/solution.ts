@@ -5,7 +5,7 @@ export const parseInput = (rawInut: string): Input => {
   return rawInut.split('\n').map(Number);
 }
 
-solutions[0] = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string => {
   let count = 0;
   let currentInput = input[0];
   for (let i = 1; i < input.length; i++) {
@@ -16,7 +16,7 @@ solutions[0] = (input: Input): number | string =>  {
   return count;
 }
 
-solutions[1] = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string => {
   let count = 0;
   for (let i = 2; i < input.length; i++) {
     const current = input[i - 2] + input[i - 1] + input[i];

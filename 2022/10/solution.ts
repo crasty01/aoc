@@ -57,7 +57,7 @@ const solution = function* (input: Input) {
   return;
 }
 
-solutions[0] = (input: Input): number =>  {
+solutions[0] = (input: Input): number => {
   const SKIP = 20;
 
   let cycle = 1;

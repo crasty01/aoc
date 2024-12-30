@@ -62,7 +62,7 @@ export const parseInput = (rawInut: string): Input => {
   return input;
 }
 
-solutions[0] = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string => {
   const crossed: { [key: string]: number } = {};
 
   for (const line of input) {
@@ -86,7 +86,7 @@ solutions[0] = (input: Input): number | string =>  {
   return Object.entries(crossed).reduce((acc, e) => e[1] >= 2 ? acc + 1 : acc, 0);
 }
 
-solutions[1] = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string => {
   const crossed: { [key: string]: number } = {};
 
   for (const line of input) {

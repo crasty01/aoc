@@ -102,7 +102,7 @@ const createVerificator = (configurations: Array<Array<Array<string | null>>>) =
 	};
 }
 
-solutions[0] = (input: Input, run = false): number =>  {
+solutions[0] = (input: Input, run = false): number => {
   if (!run) return -1;
 	const dirpad = [
 		[null, '^', 'A'],
@@ -159,7 +159,7 @@ solutions[0] = (input: Input, run = false): number =>  {
   return sum;
 }
 
-solutions[1] = (input: Input, run = false): number =>  {
+solutions[1] = (input: Input, run = false): number => {
   if (!run) return -1;
   return 0;
 }

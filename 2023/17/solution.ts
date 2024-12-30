@@ -80,10 +80,10 @@ const solution = (input: Input, minStraight: number, maxStraight: number) => {
 	}
 }
 
-solutions[0] = (input: Input): number =>  {
+solutions[0] = (input: Input): number => {
 	return solution(input, 1, 3);
 }
 
-solutions[1] = (input: Input): number =>  {
+solutions[1] = (input: Input): number => {
 	return solution(input, 4, 10);
 }

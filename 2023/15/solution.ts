@@ -14,7 +14,7 @@ const encode = (string: string) => {
   return hash;
 }
 
-solutions[0] = (input: Input): number =>  {
+solutions[0] = (input: Input): number => {
 	let sum = 0;
 	let current = '';
 	for (let i = 0; i <= input.length; i++) {
@@ -29,7 +29,7 @@ solutions[0] = (input: Input): number =>  {
   return sum;
 }
 
-solutions[1] = (input: Input): number =>  {
+solutions[1] = (input: Input): number => {
 	let sum = 0;
 	const instructions = input.split(',');
 	const map = Array.from({ length: 256 }, () => [] as Array<[string, number]>);

@@ -35,7 +35,7 @@ export const parseInput = (rawInut: string): Input => {
   }
 }
 
-solutions[0] = ({ stack, moves }: Input): number | string =>  {
+solutions[0] = ({ stack, moves }: Input): number | string => {
   for (const { from, to, n } of moves) {
     const [f, tmp] = [stack[from].slice(0, -1 * n), stack[from].slice(-1 * n)];
     stack[from] = f;
@@ -44,7 +44,7 @@ solutions[0] = ({ stack, moves }: Input): number | string =>  {
   return stack.map(line => line.at(-1)!).join('');
 }
 
-solutions[1] = async ({ stack, moves }: Input): Promise<number | string> =>  {
+solutions[1] = async ({ stack, moves }: Input): Promise<number | string> => {
   for await (const { from, to, n } of moves) {
     const [f, tmp] = [stack[from].slice(0, -1 * n), stack[from].slice(-1 * n)];
     stack[from] = f;

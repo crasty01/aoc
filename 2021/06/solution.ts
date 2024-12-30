@@ -11,7 +11,7 @@ export const parseInput = (rawInut: string): Input => {
   return rawInut.split(',').map(Number);
 }
 
-solutions[0] = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string => {
   const END_DAY = 80;
   let m = [...Array(9).fill(0)];
 
@@ -24,7 +24,7 @@ solutions[0] = (input: Input): number | string =>  {
   return sum;
 }
 
-solutions[1] = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string => {
   const END_DAY = 256;
   let m = [...Array(9).fill(0)];
 

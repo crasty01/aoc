@@ -50,7 +50,7 @@ const createMover = (grid: Grid<CellType>) => (robot: Robot, move: MoveType) => 
 	robot.y = robot.y + dir[1];
 }
 
-solutions[0] = ({ grid, moves }: Input, run = false): number =>  {
+solutions[0] = ({ grid, moves }: Input, run = false): number => {
 	const mover = createMover(grid);
 	const cell = grid.findCell(cell => cell.type === '@');
 	if (!cell) throw new Error(`ROBOT WAS NOT FOUND!`);
@@ -80,7 +80,7 @@ solutions[0] = ({ grid, moves }: Input, run = false): number =>  {
   return sum;
 }
 
-solutions[1] = (input: Input, run = false): number =>  {
+solutions[1] = (input: Input, run = false): number => {
   if (!run) return -1;
   return 0;
 }

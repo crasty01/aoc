@@ -60,7 +60,7 @@ const makeItRain = (
   return toReturn(x, y);
 }
 
-solutions[0] = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string => {
   const START = [500, 0] as const;
   const MAX_ITERATIONS = 10000;
 
@@ -78,7 +78,7 @@ solutions[0] = (input: Input): number | string =>  {
   return rocks.size - beforeStart;
 }
 
-solutions[1] = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string => {
   const START = [500, 0] as const;
   const MAX_ITERATIONS = 10000000; // just to have some limit... it's not needed
 

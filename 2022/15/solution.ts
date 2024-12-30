@@ -13,7 +13,7 @@ const getManhattanDistance = (a: Pos, b: Pos) => {
   return Math.abs(a[0] - b[0]) + Math.abs(a[1] - b[1]);
 }
 
-const solution = (input: Input, row: number): Array<[number, number]> =>  {
+const solution = (input: Input, row: number): Array<[number, number]> => {
   const lines: Array<[number, number]> = [];
 
   for (const sensor of input) {
@@ -44,7 +44,7 @@ const solution = (input: Input, row: number): Array<[number, number]> =>  {
   return lines;
 }
 
-solutions[0] = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string => {
   const ROW = 2000000;
 
   const beaconsAndSensors = new Set(input.flat(1).filter((pos) => pos[1] === ROW).map((pos) => pos.join(',')));
@@ -58,7 +58,7 @@ solutions[0] = (input: Input): number | string =>  {
   return sum - beaconsAndSensors.size;
 }
 
-solutions[1] = (input: Input, MIN = 0, MAX = 4_000_000): number | string =>  {
+solutions[1] = (input: Input, MIN = 0, MAX = 4_000_000): number | string => {
   const spots = new Set<string>();
 
   for (let row = MIN; row <= MAX; row++) {

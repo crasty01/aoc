@@ -15,7 +15,7 @@ export const parseInput = (rawInut: string): Input => {
   });
 }
 
-solutions[0] = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string => {
   const pos = {
     x: 0,
     y: 0,
@@ -38,7 +38,7 @@ solutions[0] = (input: Input): number | string =>  {
   return pos.x * pos.y;
 }
 
-solutions[1] = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string => {
   const pos = {
     x: 0,
     y: 0,

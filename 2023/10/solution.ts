@@ -42,7 +42,7 @@ const getPositionBySymbol = (pos: number, width: number, symbol: string): Array<
 	}
 }
 
-solutions[0] = (input: Input): number =>  {
+solutions[0] = (input: Input): number => {
 	const path: Array<Part> = [{
 		symbol: 'S',
 		pos: input.start,
@@ -80,7 +80,7 @@ solutions[0] = (input: Input): number =>  {
   return Math.floor(path.length / 2);
 }
 
-solutions[1] = (input: Input): number =>  {
+solutions[1] = (input: Input): number => {
 	const path: Array<Part> = [{
 		symbol: 'S',
 		pos: input.start,

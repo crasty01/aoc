@@ -45,7 +45,7 @@ export const parseInput = (rawInut: string): Input => {
 	};
 }
 
-const solution = (input: Input, expansion: number): number =>  {
+const solution = (input: Input, expansion: number): number => {
 	let sum = 0;
 
 	for (let i = 0; i < input.galaxies.length - 1; i++) {
@@ -71,10 +71,10 @@ const solution = (input: Input, expansion: number): number =>  {
   return sum;
 }
 
-solutions[0] = (input: Input): number =>  {
+solutions[0] = (input: Input): number => {
   return solution(input, 2);
 }
 
-solutions[1] = (input: Input, run = false): number =>  {
+solutions[1] = (input: Input, run = false): number => {
 	return solution(input, 1_000_000);
 }

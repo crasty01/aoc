@@ -33,7 +33,7 @@ const applyMap = (input: number, maps: Array<Map>) => {
 	return input + map.dist - map.src;
 }
 
-solutions[0] = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string => {
 	let min = Infinity;
 
 	for (const seed of input.seeds) {
@@ -102,7 +102,7 @@ const applyMapAdvanced = (_ranges: Array<Range>, maps: Array<Map>): Array<Range>
 	return output;
 }
 
-solutions[1] = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string => {
 	let min = Infinity;
 
 	for (let i = 0; i < input.seeds.length; i += 2) {
@@ -120,7 +120,7 @@ solutions[1] = (input: Input): number | string =>  {
 
 // old naive approach:
 
-// solutions[1] = (input: Input, run = false): number | string =>  {
+// solutions[1] = (input: Input, run = false): number | string => {
 // 	// if (!run) return 0;
 // 	let min = Infinity;
 

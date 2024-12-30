@@ -29,7 +29,7 @@ const DIRECTIONS = [
 	[-1, +0],
 ] as const;
 
-solutions[0] = ({ grid, width, height, walls }: Input, run = false): number =>  {
+solutions[0] = ({ grid, width, height, walls }: Input, run = false): number => {
 	const path = new Set();
 
 	const willBeOutOfBounds = (dir: number, position: number) => {
@@ -89,7 +89,7 @@ solutions[0] = ({ grid, width, height, walls }: Input, run = false): number =>  
 //   }
 // }
 
-solutions[1] = ({ grid, width, height, walls }: Input, run = false): number =>  {
+solutions[1] = ({ grid, width, height, walls }: Input, run = false): number => {
 	if (!run) return 0;
 	return -1;
 }

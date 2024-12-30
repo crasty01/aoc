@@ -108,10 +108,10 @@ const solution = (input: Input, length = 2) => {
   return visitedTailPositions.size;
 };
 
-solutions[0] = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string => {
   return solution(input, 2);
 }
 
-solutions[1] = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string => {
   return solution(input, 10);
 }

@@ -11,7 +11,7 @@ export const parseInput = (rawInut: string): Input => {
   return new Grid<CellType>(w, h, (x, y) => rawInut[y * (w + c) + x] as CellType);
 }
 
-solutions[0] = (grid: Input, run = false): number =>  {
+solutions[0] = (grid: Input, run = false): number => {
 	const xs = grid.filterCells((cell) => cell.type === 'X');
 
 	let count = 0;
@@ -32,7 +32,7 @@ solutions[0] = (grid: Input, run = false): number =>  {
   return count;
 }
 
-solutions[1] = (grid: Input, run = false): number =>  {
+solutions[1] = (grid: Input, run = false): number => {
 	const as = grid.filterCells((cell) => true
 		&& cell.x > 0
 		&& cell.x < grid.cols - 1

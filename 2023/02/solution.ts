@@ -21,7 +21,7 @@ export const parseInput = (rawInut: string): Input => {
 	});
 }
 
-solutions[0] = (input: Input): number | string =>  {
+solutions[0] = (input: Input): number | string => {
 	let sum = 0;
 	
 	for (let i = 0; i < input.length; i++) {
@@ -38,7 +38,7 @@ solutions[0] = (input: Input): number | string =>  {
 	return sum;
 }
 
-solutions[1] = (input: Input): number | string =>  {
+solutions[1] = (input: Input): number | string => {
 	let sum = 0;
 	
 	for (let i = 0; i < input.length; i++) {
