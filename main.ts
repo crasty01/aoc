@@ -7,13 +7,9 @@ consoleClear,
 } from '/src/functions/print.ts';
 import { join as joinPath } from '@std/path';
 import { parseArgs } from "@std/cli";
+import { Result, SolutionFile } from "./types.ts";
 
-type Result = {
-	index: number;
-	result: number | string;
-	performance: number;
-}
-
+const WORKER_PATH = new URL('./worker.ts', import.meta.url).href;
 let iteration = 0;
 
 const getInut = async (year: string, day: string) => {
@@ -21,13 +17,9 @@ const getInut = async (year: string, day: string) => {
   return await Deno.readTextFile(path);
 }
 
-const getSolutions = async <Input>(year: string, day: string, iteration?: number): Promise<{
-	parseInput: (rawInut: string) => Input;
-	solutions: Array<(input: Input) => Promise<number | string>>;
-	tests?: Array<(input: Input) => Promise<number | string>>;
-}> => {
+const getSolutions = async <Input>(year: string, day: string, iteration?: number): Promise<SolutionFile<Input> & { path: string; }> => {
   const path = `file:\\\\${joinPath(Deno.cwd(), year, day, `solution.ts#${iteration}`)}`;
-  return await import(path);
+  return { ...await import(path), path };
 }
 
 
@@ -49,21 +41,37 @@ const run = async (iteration = 0) => {
     const days = config.day ? [config.day] : await getAllDaysInAYear(year);
 
     for (const day of days) {
-      const { parseInput, solutions, tests } = await getSolutions(year, day, iteration);
-      const rawInut = await getInut(year, day);
-			const functions = parsedArgs['include-tests'] ? [...solutions, ...(tests ?? [])] : solutions;
-			const results: Array<Result> = await Promise.all(functions.map((solution, solutionIndex) => new Promise<Result>((resolve, reject) => {
-				const solutionPerformanceStart = performance.now();
-				Promise.resolve(solution(parseInput(rawInut))).then((result) => {
-					const solutionPerformanceEnd = performance.now();
-					const solutionPerformance = Math.round((solutionPerformanceEnd - solutionPerformanceStart) * 100) / 100;
+      const { solutions, runExamples, path } = await getSolutions(year, day, iteration);
+      const rawInput = await getInut(year, day);
+			if (parsedArgs['include-examples']) {
+				if (runExamples) {
+					await runExamples();
+				} else {
+					console.warn(`WARN: argument 'include-examples' is true, but function 'runExamples' does not exists!`);
+				}
+			}
 
-					resolve({
-						index: solutionIndex,
-						performance: solutionPerformance,
-						result: result,
-					})
-				}).catch(reject)
+			const results: Array<Result> = await Promise.all(solutions.map((_, solutionIndex) => new Promise<Result>((resolve, reject) => {
+				const worker = new Worker(WORKER_PATH, {
+					name: `solution-${year}-${day}-${solutionIndex}-${iteration}`,
+					type: 'module',
+				});
+
+				worker.addEventListener('message', ({ data }: MessageEvent<Result>) => {
+					worker.terminate();
+					resolve(data);
+				});
+
+				worker.addEventListener('error', (event: ErrorEvent) => {
+					worker.terminate();
+					reject(event.message);
+				});
+
+				worker.postMessage({
+					path,
+					input: rawInput,
+					solutionIndex,
+				});
 			})));
 
 			if (!parsedArgs['no-results']) {

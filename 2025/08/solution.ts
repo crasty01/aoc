@@ -64,7 +64,7 @@ solutions[0] = (input: Input, run = false): number => {
 	}
 
 	const sizes = circutes.map(set => set.size).sort((a, b) => b - a);
-  return sizes[0] * sizes[1] * sizes[2];
+  return (sizes[0] || 1) * (sizes[1] || 1) * (sizes[2] || 1);
 }
 
 solutions[1] = (input: Input, run = false): number => {
@@ -143,6 +143,9 @@ const example = `162,817,812
 984,92,344
 425,690,689`;
 
-for (let i = 0; i < solutions.length; i++) {
-	console.log(`solution[${i}]:`, solutions[i](parseInput(example), true))
+
+export const runExamples = () => {
+	for (let i = 0; i < solutions.length; i++) {
+		console.log(`example[${i}]:`, solutions[i](parseInput(example), true))
+	}
 }

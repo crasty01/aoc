@@ -25,26 +25,6 @@ const selectBatteries = (bank: Array<number>, length: number) => {
 	return parseInt(selected.join(''));
 }
 
-// solutions[0] = (input: Input, run = false): number => {
-// 	let sum = 0;
-// 	for (const bank of input) {
-// 		let first = bank[0];
-// 		let second = 0;
-// 		for (let i = 1; i < bank.length; i++) {
-// 			const n = bank[i];
-// 			if (second > first) {
-// 				first = second;
-// 				second = n;
-// 			} else if (n > second) {
-// 				second = n;
-// 			}
-// 		}
-
-// 		sum += first * 10 + second;
-// 	}
-//   return sum;
-// }
-
 solutions[0] = (input: Input, run = false): number => {
 	let sum = 0;
 	for (const bank of input) {

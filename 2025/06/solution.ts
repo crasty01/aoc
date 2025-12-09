@@ -86,6 +86,8 @@ const example = `123 328  51 64
   6 98  215 314
 *   +   *   +  `;
 
-for (let i = 0; i < solutions.length; i++) {
-	console.log(`solution[${i}]:`, solutions[i](parseInput(example), true))
+export const runExamples = () => {
+	for (let i = 0; i < solutions.length; i++) {
+		console.log(`example[${i}]:`, solutions[i](parseInput(example), true))
+	}
 }
