@@ -14,3 +14,9 @@ solutions[1] = (input: Input, run = false): number => {
   if (!run) return -1;
   return 0;
 }
+
+const example = ``;
+
+for (let i = 0; i < solutions.length; i++) {
+	console.log(`solution[${i}]:`, solutions[i](parseInput(example), true))
+}
